@@ -1,4 +1,4 @@
 # tbadams45.github.io
 My personal website. https://tbadams45.github.io
 
-Powered by Jeykyll. 
+Powered by Jekyll.

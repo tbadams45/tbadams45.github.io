@@ -23,48 +23,68 @@ Below are a bunch of scriptures down that give a sense of these main topics. The
 # Speech and the Heart
 See also Mark 7:20-23, Luke 6:45-45 for Jesus' take on this topic.
 
+
 > "The tongue of the righteous is choice silver, but the heart of the wicked is of little value." 10:20
+
 
 > "The lips of the righteous know what is fitting, but the mouth of the wicked only what is perverse." 10:32
 
+
 > "The lips of the wise spread knowledge; not so the heart of fools." 15:7
 
+
 > "A wise man's heart guides his mouth, and his lips promote instruction." 16:23
+
 
 > "A scoundrel plots evil, and his speech is like a scorching fire." 16:27
 
 # Restraint
 > "A man who lacks judgment derides his neighbor, but a man of understanding holds his tongue." 11:12
 
+
 > "A prudent man keeps his knowledge to himself, but the heart of fools blurts out folly." 12:23
+
 
 > "He who guards his lips will guard his life, but he who speaks rashly will come to ruin." 13:3
 
+
 > "A man finds joy in giving an apt reply -- and how good is a timely word!" 15:23
+
 
 > "The heart of the righteous weighs its answers, but the mouth of the wicked gushes evil." 15:28
 
+
 > "A man of knowledge uses words with restraint, and a man of understanding is even-tempered." 17:27
+
 
 > "Even a fool is thought wise if he keeps silent, and discerning if he holds his tongue." 17:28
 
+
 > "A fool finds no pleasure in understanding but delights in airing his own opinions." 18:2 
 
+
 > "He who answers before listening -- that is his folly and his shame." 18:13
+
 
 > "It is a trap for a man to dedicate something rashly and only later to consider his vows." 20:25
 
 # Trustworthiness/Truthfullness.
 This one stands out to me because it's an indication of the behavior that God hates. In this, we see two of them directly relating to truthfulness, with a third referencing the destructive power of speech. We also see, again, a connection between speech and the heart, given that they are woven together though this passage. 
+
 > "There are six things the Lord hates, seven that are detestable to him: haughty eyes, a lying tongue, hands that shed innocent blood, a heart that devises wicked schemes, feet taht are quick to rush into evil, a false witness who pours out lies and a man who stirs up dissension among brothers." 6:16-19
+
 
 > "The wise in heart accept commands, but a chattering fool comes to ruin." 10:8
 
+
 > "A gossip betrays a confidence, but a trustworthy man keeps a secret." 11:13
+
 
 > "Truthful lips endure forever, but lying lips lasts only a moment." 12:19
 
+
 > "The Lord detests lying lips, but he delights in men who are truthful." 12:22
+
 
 > "An honest answer is like a kiss on the lips." 24:26
 
@@ -72,6 +92,8 @@ This one stands out to me because it's an indication of the behavior that God ha
 > "A gossip betrays a confidence; so avoid a man who talks too much." 20:19
 
 > "The words of a gossip are like choice morsels; they go down to a man's inmost parts." 18:8, 26:20
+
+> "Without wood a fire goes out; without gossip a quarrel dies down." 26:20
 
 # Flattery
 > "A lying tongue hates those it hurts, and a flattering motuh works ruin." 26:28
@@ -88,17 +110,24 @@ This one stands out to me because it's an indication of the behavior that God ha
 # Power
 > "The lips of the righteous nourish many, but fools die for lack of judgement." 10:20
 
+
 > "With his mouth the godless destroys his neighbor, but through knowledge the righteous escape." 11:9
+
 
 > "Through the blessing of the upright a city is exalted, but by the mouth of the wicked it is destroyed." 11:12
 
+
 > "Reckless words pierce like a sword, but the tongue of the wise brings healing." 12:18
 
+
 > "A gentle answer turns away wrath, but a harsh word stirs up anger." 15:1
+
 
 # Some Extra Goodies
 > "Let another praise you, and not your own mouth; someone else, and not your own lips." 27:2
 
+
 > "Better is open rebuke than hidden love." 27:5
+
 
 > "Like clouds and wind without rain is a man who boats of gifts he does not give." 25:14

@@ -1,2 +1,21 @@
-name: whilethereislight
-markdown: kramdown 
+# Permalinks
+#
+permalink:           pretty
+
+# Setup
+title:               tbadams
+tagline:             My Digital Home
+description:         This is a description
+url:                 http://tbadams.com
+baseurl:             ''
+paginate:            5
+gems:                [jekyll-paginate]
+
+# About/contact
+author:
+  name:              Timothy Adams
+  url:               http://tbadams.com
+  email:             tbadams45@gmail.com
+
+# Custom vars
+version:             1.0.0

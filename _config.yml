@@ -3,9 +3,9 @@
 permalink:           pretty
 
 # Setup
-title:               tbadams
-tagline:             My Digital Home
-description:         This is a description
+title:               Timothy Breckner Adams
+tagline:             Caveat Lector
+description:         A place to host my blog posts, thoughts, musings, ramblings... Whatever you want to call them. 
 url:                 http://tbadams.com
 baseurl:             ''
 paginate:            5

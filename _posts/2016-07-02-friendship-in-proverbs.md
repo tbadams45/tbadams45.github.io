@@ -10,8 +10,6 @@ A few weeks ago, I listened to a [https://www.youtube.com/watch?v=8Tc4VIQrXdE](T
 
 Tim Keller focuses on friendship as discussed in Proverbs, and his teaching on these scriptures drove me back to look at them myself. Rather than try to repeat what he's said since you can just listen to him yourself (and, frankly, because I don't think I could do this long after having listened to it), I'll share the scriptures I looked at.
 
-# Friendship in Proverbs
-
 ## Your friendships shape you
 > "Walk with the wise and become wise, for a companion of fools suffers harm." 13:20
 
@@ -32,7 +30,7 @@ Tim Keller focuses on friendship as discussed in Proverbs, and his teaching on t
 
 ## Flattery, honesty, and counsel
 
-> "A lying tongue hates those it hurts, and a flaterring mouth works ruin." 26:28
+> "A lying tongue hates those it hurts, and a flattering mouth works ruin." 26:28
 
 
 > "Better is open rebuke than hidden love" 27:5
@@ -68,7 +66,7 @@ Tim Keller focuses on friendship as discussed in Proverbs, and his teaching on t
 > "If you find honey, eat just enough - too much of it, and you will vomit. Seldom set foot in your neighbor's house - too much of you, and he will hate you." 25:16-17
 
 
-> "Like a madman shooting firebrands or deadly arrows is a man who decieves his neighbor and says, 'I was only joking!'" 26:18-19
+> "Like a madman shooting firebrands or deadly arrows is a man who deceives his neighbor and says, 'I was only joking!'" 26:18-19
 
 
 > "Do not forsake your friend and the friend of your father, and do not go to your brother's house when disaster strikes you - better a neighbor nearby than a brother far away." 27:10

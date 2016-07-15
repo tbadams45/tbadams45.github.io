@@ -67,12 +67,12 @@ A timely word or an apt reply are much more easily found had if your words are c
 
 > "He who answers before listening -- that is his folly and his shame." 18:13
 
-I find this particularly easy to do. It's easy for me to think I know what someone is saying, or what they *really* mean, without actually taking the time to listen to them. While I might be correct a small fraction of the time, in the vast majority of cases I'm way off — and even where I am right, the fact that I interrupted and cut off the other person generally negates any insight I might have had into what they were saying.
-
 
 > "It is a trap for a man to dedicate something rashly and only later to consider his vows." 20:25
 
-# Trustworthiness/Truthfullness.
+I find this one (20:25) particularly easy to do. It's easy for me to think I know what someone is saying, or what they *really* mean, without actually taking the time to listen to them. While I might be correct a small fraction of the time, in the vast majority of cases I'm way off — and even where I am right, the fact that I interrupted and cut off the other person generally negates any insight I might have had into what they were saying.
+
+# Trustworthiness/Truthfulness.
 
 > "There are six things the Lord hates, seven that are detestable to him: haughty eyes, a lying tongue, hands that shed innocent blood, a heart that devises wicked schemes, feet that are quick to rush into evil, a false witness who pours out lies and a man who stirs up dissension among brothers." 6:16-19
 
@@ -99,8 +99,8 @@ Note the connection again between the speech and the heart in 6:16-19, and that 
 
 > "Without wood a fire goes out; without gossip a quarrel dies down." 26:20
 
-# Flattery and its oposite
-> "A lying tongue hates those it hurts, and a flattering motuh works ruin." 26:28
+# Flattery and its opposite
+> "A lying tongue hates those it hurts, and a flattering mouth works ruin." 26:28
 
 > "Wounds from a friend can be trusted, but an enemy multiplies kisses." 27:6
 

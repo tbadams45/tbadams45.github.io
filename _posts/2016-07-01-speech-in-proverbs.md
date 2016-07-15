@@ -20,7 +20,7 @@ One of the topics where there are a *lot* of scriptures is speech. I was scannin
 
 Below are a bunch of scriptures down that give a sense of these main topics. There are a lot, but it's helpful for me to type them out to remember them. Any emphasis is mine.
 
-# Speech and the Heart
+## Speech and the Heart
 See also Mark 7:20-23, Luke 6:45-45 for Jesus' take on this topic.
 
 
@@ -38,7 +38,7 @@ See also Mark 7:20-23, Luke 6:45-45 for Jesus' take on this topic.
 
 > "A scoundrel plots evil, and his speech is like a scorching fire." 16:27
 
-# Restraint
+## Restraint
 > "A man who lacks judgment derides his neighbor, but a man of understanding holds his tongue." 11:12
 
 
@@ -72,7 +72,7 @@ A timely word or an apt reply are much more easily found had if your words are c
 
 I find this one (20:25) particularly easy to do. It's easy for me to think I know what someone is saying, or what they *really* mean, without actually taking the time to listen to them. While I might be correct a small fraction of the time, in the vast majority of cases I'm way off — and even where I am right, the fact that I interrupted and cut off the other person generally negates any insight I might have had into what they were saying.
 
-# Trustworthiness/Truthfulness.
+## Trustworthiness/Truthfulness.
 
 > "There are six things the Lord hates, seven that are detestable to him: haughty eyes, a lying tongue, hands that shed innocent blood, a heart that devises wicked schemes, feet that are quick to rush into evil, a false witness who pours out lies and a man who stirs up dissension among brothers." 6:16-19
 
@@ -92,14 +92,14 @@ Note the connection again between the speech and the heart in 6:16-19, and that 
 
 > "An honest answer is like a kiss on the lips." 24:26
 
-# Gossip
+## Gossip
 > "A gossip betrays a confidence; so avoid a man who talks too much." 20:19
 
 > "The words of a gossip are like choice morsels; they go down to a man's inmost parts." 18:8, 26:20
 
 > "Without wood a fire goes out; without gossip a quarrel dies down." 26:20
 
-# Flattery and its opposite
+## Flattery and its opposite
 > "A lying tongue hates those it hurts, and a flattering mouth works ruin." 26:28
 
 > "Wounds from a friend can be trusted, but an enemy multiplies kisses." 27:6
@@ -110,10 +110,10 @@ This one strikes me - isn't gaining favor with people one of the motivations for
 
 > "Whoever flatters his neighbor is spreading a net for his feet." 29:5
 
-# Rewards
+## Rewards
 > "From the fruit of his lips a man is filled with good things as surely as the work of his hands rewards him." 12:12
 
-# Power
+## Power
 > "The lips of the righteous nourish many, but fools die for lack of judgement." 10:20
 
 
@@ -129,7 +129,7 @@ This one strikes me - isn't gaining favor with people one of the motivations for
 > "A gentle answer turns away wrath, but a harsh word stirs up anger." 15:1
 
 
-# Some Extra Goodies
+## Some Extra Goodies
 
 These didn't necessarily fit in to any of the themes I've discussed up above. However, these are some of the most helpful for me as I'm considering what my own speech would look like. I find 27:2 to be particularly convicting. 
 

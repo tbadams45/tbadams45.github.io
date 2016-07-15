@@ -6,7 +6,7 @@ date: 2016-07-02
 
 (Part of a series where I'm looking at different topics in Proverbs. [Here's the last one]({% post_url 2016-07-01-speech-in-proverbs %}).)
 
-A few weeks ago, I listened to a [https://www.youtube.com/watch?v=8Tc4VIQrXdE](Tim Keller sermon) on friendship. I had already decided that I wanted to grow in my relationships this summer, particularly with other brothers. This sermon got me thinking about what it looks like to actually do that. It's a great listen and I recommend taking the time to reflect on it if you're able.
+A few weeks ago, I listened to a [Tim Keller sermon](https://www.youtube.com/watch?v=8Tc4VIQrXdE) on friendship. I had already decided that I wanted to grow in my relationships this summer, particularly with other brothers. This sermon got me thinking about what it looks like to actually do that. It's a great listen and I recommend taking the time to reflect on it if you're able.
 
 Tim Keller focuses on friendship as discussed in Proverbs, and his teaching on these scriptures drove me back to look at them myself. Rather than try to repeat what he's said since you can just listen to him yourself (and, frankly, because I don't think I could do this long after having listened to it), I'll share the scriptures I looked at.
 
@@ -25,7 +25,6 @@ Tim Keller focuses on friendship as discussed in Proverbs, and his teaching on t
 
 
 > "A man of many companions may come to ruin, but there is a friend who sticks closer than a brother." 18:24
-
 
 
 ## Flattery, honesty, and counsel
@@ -73,10 +72,7 @@ Tim Keller focuses on friendship as discussed in Proverbs, and his teaching on t
 
 
 
-
-
-
-# The greatest friend
+## The greatest friend
 As I was listening to Tim Keller, and as I was going through the scriptures above, the picture of what a perfect friend would like grew in my head. When that kind of thing happens, I generally default to thinking about how much I fall short of that perfect image. Tim Keller speaks to this. He raises the question "how do we get the *power* to be a great friend?" The answer? Look to the Jesus - the perfect friend himself.
 
 Think about it! Jesus cared for people enough that he met them and was with them in the worst times. He had the love to speak the truth to the disciples and to the crowds, even if it was sometimes hard to hear. Yet he didn't just rebuke people: he wanted to be close to them. ("Jerusalem, Jerusalem, you who kill the prophets and stone those sent to you, how often I have longed to gather your children together, as a hen gathers her chicks under her wings, and you were not willing." Luke 13:34) And beyond all of this, he did what only the greatest friend does. 

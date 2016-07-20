@@ -4,8 +4,8 @@ permalink:           pretty
 
 # Setup
 title:               Timothy Breckner Adams
-tagline:             Caveat Lector
-description:         A place to host my blog posts, thoughts, musings, ramblings... Whatever you want to call them. 
+tagline:             ''
+description:         A place to host my thoughts, musings, ramblings, etc.
 url:                 http://tbadams.com
 baseurl:             ''
 paginate:            5

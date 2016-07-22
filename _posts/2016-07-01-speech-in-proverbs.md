@@ -1,6 +1,7 @@
 ---
 layout: post
 title: "Speech in Proverbs"
+description: A look at various scriptures on and themes relating to speech in Proverbs.
 date: 2016-07-01
 ---
 

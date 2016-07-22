@@ -1,6 +1,7 @@
 ---
 layout: post
 title: "Friendship in Proverbs"
+description: A look at various scriptures on and themes relating to friendship in Proverbs.
 date: 2016-07-02
 ---
 

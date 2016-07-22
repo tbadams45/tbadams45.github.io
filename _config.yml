@@ -17,5 +17,5 @@ author:
   url:               http://tbadams.com
   email:             tbadams45@gmail.com
 
-# Custom vars
-version:             1.0.0
+# Google services
+google_analytics: UA-81234002-1

@@ -115,7 +115,7 @@ This one strikes me - isn't gaining favor with people one of the motivations for
 > "From the fruit of his lips a man is filled with good things as surely as the work of his hands rewards him." 12:12
 
 ## Power
-> "The lips of the righteous nourish many, but fools die for lack of judgement." 10:20
+> "The lips of the righteous nourish many, but fools die for lack of judgment." 10:20
 
 
 > "With his mouth the godless destroys his neighbor, but through knowledge the righteous escape." 11:9

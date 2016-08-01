@@ -16,7 +16,7 @@ Many of these I've heard from other places before... There was a blog post that 
 
 
 
-# Time Management Principles To Operate By
+## Time Management Principles To Operate By
 
 - **Every day, make a list of what you'd like to accomplish that day.** It's possible you already have a list of things you should do that day from previous days. Review that list, sure, but make sure it actually matches up with the day that you're currently living, not yesterday's expectation of it.
 - **Prioritize your list.** Key to this is answering the following questions: what do you *have* to get done today? What things on this list are moving forward your primary objectives?

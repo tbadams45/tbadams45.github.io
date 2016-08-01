@@ -29,6 +29,8 @@ These proverbs give us two insights. First, we see the differing outcomes of dil
 
 There are a few key themes that I've seen surrounding diligence and laziness. These themes help us to define what it means to be diligent, and also explain what its outcomes will be. 
 
+...Unfortunately, I've found it difficult to write up all of my thoughts on these scriptures due to time constraints. Rather than not post anything, however, I figure I can leave the scriptures with a couple of brief thoughts here.
+
 ## Diligence has to do with hard work
 
 > All hard work brings a profit, but mere talk leads only to poverty. *14:23*
@@ -65,7 +67,7 @@ There are a few key themes that I've seen surrounding diligence and laziness. Th
 
 > Do you see a man skilled in his work? He will serve before kings; he will not serve before obscure men. *22:29*
 
-## Diligence, laziness, and sleep
+## The sluggard loves sleep
 
 > Do not love sleep or you will grow poor; stay awake and you will have food to spare. *20:13*
 
@@ -75,35 +77,26 @@ There are a few key themes that I've seen surrounding diligence and laziness. Th
 
 ## What are you being diligent for?
 
+Proverbs doesn't just talk about diligence. It also notes that we should be diligent in pursuing the right things. There are a whole bunch of scriptures that discuss this in regards to wealth, which I might write about at some point. This one, however, gives a sense of the general attitude towards wealth that God reveals in Proverbs.
+
 > Do not wear yourself out to get rich; have the wisdom to show restraint. Cast but a glance at riches, and they are gone, for they will surely sprout wings and fly off to the sky like an eagle. *23:4-5*
-
-What are you being diligent for?
-
-> Finish your outdoor work and get your fields ready; after that, build your house. *24:27*
-
-What is the focus of your efforts?
 
 ## And much more
 
-In addition to these themes, there were several other lessons I learned when studying out diligence.
+In addition to these themes, there were several other nuggets I found when studying out diligence.
 
 > If you falter in times of trouble, how small is your strength! *24:10*
 
-Diligence matters when it's difficult.
+Helpful to me because it reminds me that the times of trouble are the training and proving grounds for our faith. (cf. James 1:2-5) 
 
 > The lazy man does not roast his game, but the diligent man prizes his possessions. *12:27*
 
+Relevant to my life because I frequently don't take care of the possessions that I do have...
+
 > The sluggard is wiser in his own eyes than seven men who answer discreetly. *26:16*
+
+I've never really thought about the connection between laziness and pride, but this Proverb brings it to mind. What is laziness other than a heart that believes that its own desires and will is more important than any other responsibility/duty/person that might come its way?
 
 > One who is slack in his work is brother to one who destroys. *18:9*
 
-## How does all of this connect to the rest of scripture?
-
-This is a good question. In none of these scriptures does God come up specifically. Can be easy to focus just on character traits and their results, but lose sight of the context/purpose.
-
-Some thoughts:
-	The man who does these things will live by them
-	The fear of the Lord is the beginning of wisdom, and knowledge of the holy one is understanding
-	Live productive lives (1 Peter...? 1 Tim?)
-	Live quiet lives (1 Thess?)
-	
+See James 4:17 -- "If anyone, then, knows the good they ought to do and doesn't do it, it is sin for them."

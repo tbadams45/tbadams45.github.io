@@ -59,8 +59,6 @@ There are a few key themes that I've seen surrounding diligence and laziness. Th
 
 > The sluggard says, 'There is a lion in the road, a fierce lion roaming the streets!' *26:13*
  
-^^^ Discuss these two. 
-
 > Lazy hands make a man poor, but diligent hands bring wealth. *10:4*
 
 > The plans of the diligent lead to profit as surely as haste leads to poverty. *21:5*

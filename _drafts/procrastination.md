@@ -3,3 +3,5 @@
 > You may delay, but time will not. *Benjamin Franklin*
 
 > Know the true value of time; snatch, seize, and enjoy every moment of it. No idleness; no laziness; no procrastination; never put off till tomorrow what you can do today. *Lord Chesterfield*
+
+> Putting off an easy thing makes it hard. Putting off a hard thing makes it impossible. *George Claude Lorimer*

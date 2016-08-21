@@ -74,7 +74,7 @@ Tim Keller focuses on friendship as discussed in Proverbs, and his teaching on t
 
 
 ## The greatest friend
-As I was listening to Tim Keller, and as I was going through the scriptures above, the picture of what a perfect friend would like grew in my head. When that kind of thing happens, I generally default to thinking about how much I fall short of that perfect image. Tim Keller speaks to this. He raises the question "how do we get the *power* to be a great friend?" The answer? Look to the Jesus - the perfect friend himself.
+As I was listening to Tim Keller, and as I was going through the scriptures above, the picture of what a perfect friend would look like grew in my head. When that kind of thing happens, I generally default to thinking about how much I fall short of that perfect image. Tim Keller speaks to this. He raises the question "how do we get the *power* to be a great friend?" The answer? Look to Jesus - the perfect friend himself.
 
 Think about it! Jesus cared for people enough that he met them and was with them in the worst times. He had the love to speak the truth to the disciples and to the crowds, even if it was sometimes hard to hear. Yet he didn't just rebuke people: he wanted to be close to them. 
 

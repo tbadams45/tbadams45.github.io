@@ -19,7 +19,7 @@ One of the topics where there are a *lot* of scriptures is speech. I was scannin
 - There's a reward for speech - if bad, then bad; if good, then good.
 - Speech is flat out *powerful*. It has the ability to create both great harm and great good.
 
-Below are a bunch of scriptures down that give a sense of these main topics. There are a lot, but it's helpful for me to type them out to remember them. Any emphasis is mine.
+Below are a bunch of scriptures that give a sense of these main topics. There are a lot, but it's helpful for me to type them out to remember them. Any emphasis is mine.
 
 ## Speech and the Heart
 See also Mark 7:20-23, Luke 6:45-45 for Jesus' take on this topic.
@@ -51,7 +51,7 @@ See also Mark 7:20-23, Luke 6:45-45 for Jesus' take on this topic.
 
 > "A man finds joy in giving an apt reply -- and how good is a timely word!" 15:23
 
-A timely word or an apt reply are much more easily found had if your words are carefully chosen.
+It's much easier to say the right thing at the right time if you say less.
 
 
 > "The heart of the righteous weighs its answers, but the mouth of the wicked gushes evil." 15:28
@@ -68,10 +68,10 @@ A timely word or an apt reply are much more easily found had if your words are c
 
 > "He who answers before listening -- that is his folly and his shame." 18:13
 
+I find this one (18:13) particularly easy to do. It's easy for me to think I know what someone is saying, or what they *really* mean, without actually taking the time to listen to them. While I might be correct a small fraction of the time, in the vast majority of cases I'm way off — and even where I am right, the fact that I interrupted and cut off the other person generally negates any insight I might have had into what they were saying.
 
 > "It is a trap for a man to dedicate something rashly and only later to consider his vows." 20:25
 
-I find this one (20:25) particularly easy to do. It's easy for me to think I know what someone is saying, or what they *really* mean, without actually taking the time to listen to them. While I might be correct a small fraction of the time, in the vast majority of cases I'm way off — and even where I am right, the fact that I interrupted and cut off the other person generally negates any insight I might have had into what they were saying.
 
 ## Trustworthiness/Truthfulness.
 

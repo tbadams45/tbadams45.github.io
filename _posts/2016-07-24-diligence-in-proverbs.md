@@ -11,7 +11,7 @@ When I was a kid, my parents gave me a scripture to memorize:
 
 > Like a city whose walls are broken down is a man who lacks self-control. *25:28*
 
-They gave this scripture in particular to me because this was something I was decisively not good at. For me back then, self-control had a lot to do with controlling my temper. I was often unable or unwilling to control outbursts that I had, and hurt (emotionally) or threatened to hurt (physically) the people around me because of it. 
+They gave this scripture in particular to me because this was something I was decidedly not good at. For me back then, self-control had a lot to do with controlling my temper. I was often unable or unwilling to control outbursts that I had, and hurt (emotionally) or threatened to hurt (physically) the people around me because of it. 
 
 Self-control doesn't only have to do with controlling anger. In a more general sense, it's about controlling our minds and bodies to do what we decide, rather than what we might initially desire. In this sense, self-control is a foundation of *diligence*. I've never really used this word before, instead using the term discipline to mean the same thing. To me, to be disciplined meant to be studious, attentive to my work, reliable, etc. In Proverbs, these qualities relate more to diligence than to discipline. Proverbs that discuss discipline deal more with what we might think of as correction. This was news to me.
 
@@ -25,7 +25,7 @@ Several proverbs that deal with diligence in Proverbs use this poetic device to 
 
 > The sluggard craves and gets nothing, but the desires of the diligent are fully satisfied. *13:4*
 
-These proverbs give us two insights. First, we see the differing outcomes of diligence and laziness. As a general rule, diligence results in blessing and honor, whereas the fruit of laziness is frustrated desire and hard labor. Second, we see that we can learn something about diligence by also learning about its opposite, laziness. This is helpful, as there a lot of proverbs that talk about laziness.
+These proverbs give us two insights. First, we see the differing outcomes of diligence and laziness. As a general rule, diligence results in blessing and honor, whereas the fruit of laziness is frustrated desire and hard labor. Second, we see that we can learn something about diligence by also learning about its opposite, laziness. This is helpful, as there are a lot of proverbs that talk about laziness.
 
 There are a few key themes that I've seen surrounding diligence and laziness. These themes help us to define what it means to be diligent, and also explain what its outcomes will be. 
 

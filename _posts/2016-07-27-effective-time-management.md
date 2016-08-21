@@ -12,7 +12,7 @@ On top of that, and especially in the work that I've been doing this summer, it 
 
 So, without further ado, I'd like to present my working set of time management principles that I *intend* to use in my work and schoolwork. I'm categorizing their use to just these areas because those are the places where I've felt their lack the most keenly this summer. Many of them are applicable elsewhere, too. 
 
-Many of these I've heard from other places before... There was a blog post that I read about a year about that had several of these ideas, but I can't recall who wrote it, unfortunately. My professor Bill Leonard at UMass also has been working to drill many of these in my and my class's heads.
+Many of these I've heard from other places before... There was a blog post that I read about a year ago that had several of these ideas, but I can't recall who wrote it, unfortunately. My professor Bill Leonard at UMass also has been working to drill many of these in my and my class's heads.
 
 
 

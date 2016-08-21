@@ -6,7 +6,7 @@ description: Time management principles that I've learned, beyond the standard "
 
 Ever since I had a minor nervous breakdown in sophomore year of high school because of everything I was trying to do, I've been trying to learn how to more effectively manage my time. Time is precious because it's an unreplenishable, finite resource (at least on this earth). It makes sense to try and use it to its fullest capacity.
 
-Yet... I don't. A lot. It's easy not to. Effectively managing time has to do with knowing and disciplining yourself. Most of the time, using your time in the most effective way will involve doing something that you might not necessarily want to do right at this moment, either because it's hard or inconvient. I often prefer to have my fun beforehand and ignore what I really need to do until deadlines compell me otherwise. 
+Yet... I don't. A lot. It's easy not to. Effectively managing time has to do with knowing and disciplining yourself. Most of the time, using your time in the most effective way will involve doing something that you might not necessarily want to do right at this moment, either because it's hard or inconvenient. I often prefer to have my fun beforehand and ignore what I really need to do until deadlines compell me otherwise. 
 
 On top of that, and especially in the work that I've been doing this summer, it can be easy to get bogged down in things that take up a lot of time, without actually contributing much to my primary goal. I've found this to be the case a lot in the past couple of days.
 

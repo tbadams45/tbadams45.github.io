@@ -19,6 +19,7 @@ layout: null
  <entry>
    <title>{{ post.title }}</title>
    <link href="{{ site.url }}{{ post.url }}"/>
+   <pubDate>{{ post.date | date_to_xmlschema }}</pubDate>
    <updated>{{ post.date | date_to_xmlschema }}</updated>
    <id>{{ site.url }}{{ site.baseurl }}{{ post.id }}</id>
    <content type="html">{{ post.content | xml_escape }}</content>

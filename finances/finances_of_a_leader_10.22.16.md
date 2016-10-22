@@ -1,8 +1,3 @@
----
-layout: post
-title: CTP: Finances of a Leader
-date: 2016-10-22
----
 
 # Finances of a leader:
 4 Things:
@@ -66,3 +61,8 @@ The power of compound interest - CRAZY.
 Never get a car loan. Buy in cash. Instead of making a car payment to the bank, delay purchasing it and make a car payment to yourself. 
 
 Food budget: people blow their budgets on food again and again. If you buy food at the grocery store etc., you save a ton of money. Talk to the families in the church and have them teach you their favorite dish.
+
+# Places to look in the scriptures about money
+- Matthew
+- Luke
+- Proverbs

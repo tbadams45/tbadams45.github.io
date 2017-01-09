@@ -81,45 +81,22 @@
 
             <div class="section-header">
                 <h2 class="section-title text-center wow fadeInDown">About The Project</h2>
-                <p class="text-center wow fadeInDown">The AutoUmp project is part computer vision and part embedded systems design and integration. Check out our block diagram.</p>
+                <p class="text-center wow fadeInDown">The AutoUmp project is part computer vision and part embedded systems design and integration. Two cameras embedded in the plate monitor for a ball flying overhead. If seen, the point where the ball crosses the strike zone in each video feed is calculated. The data from both cameras is integrated to find the location where the ball passed through the strike zone and make the call.</p>
             </div>
 
-            <div class="row">
-                <div class="col-sm-12 wow fadeInLeft">
-                    <h3 class="column-title">Block Diagrams</h3>
-                    <img class="img-responsive" src="images/about/mdr_hardware_block_diagram.png" alt="hardware block diagram">
-                    <img class="img-responsive" src="images/about/mdr_software_block_diagram.png" alt="software block diagram">
-                    <!-- 16:9 aspect ratio
-                    <div class="embed-responsive embed-responsive-16by9">
-                        <iframe src="//player.vimeo.com/video/58093852?title=0&amp;byline=0&amp;portrait=0&amp;color=e79b39" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
-                    </div>-->
-                </div>
+            <div>
+                <h3 class="text-center">The Algorithm</h3>
+                <img class="img-responsive" src="images/about/mdr_software_block_diagram.png" alt="software block diagram">
+                <p>To start, we perform background subtraction and thresholding on the current frame and the previous frame, creating a new image that has white pixels only where an object has moved since the last frame. This new image is passed through a denoising filter to eliminate stray noise or camera malfunctions that may be incorrectly labeled as objects.</p>
 
-                <!--<div class="col-sm-4 wow fadeInRight">
-                    <h3 class="column-title">Multi Capability</h3>
-                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
+                <p>The denoised image is then passed to an object detection function, which has two main components. First, a flood-fill algorithm identifies connected regions of white pixels, giving each a unique ID and summary information of each in a table. Second, every object ID that is connected to the edge of the image is removed. This second step allows us to detect a ball in flight instead of falsely detecting a player’s hand, a bat, etc., as these objects are not in flight and therefore must be connected to the edge of the image.</p>
 
-                    <p>Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
+                <p>Because of the nature of the background subtraction, the images we will operate on will have two “balls” in them – each representing the location of the ball in a different frame. We can use this fact to our advantage to greatly simplify our calculations by connecting the centers of these two balls and finding the point at which they cross the middle of the image. Rather than attempt to calculate the 3-D location of a ball and seeing if it passes through the volume of the strike zone, we model the strike zone as a plane, and represent the line of pixels that make up the middle of the image as that plane. This allows us to convert a 3-D problem into a 2-D problem. The last step of our algorithm takes the point in each image where the ball passes through this plane, and uses simple geometry and the properties of the camera to calculate the x- and y-location of the ball in the plane of the strike zone. From here, it is a simple matter to match the location of the ball with the strike zone computer from the batter’s height.</p>
+            </div>
 
-                    <div class="row">
-                        <div class="col-sm-6">
-                            <ul class="nostyle">
-                                <li><i class="fa fa-check-square"></i> Ipsum is simply dummy</li>
-                                <li><i class="fa fa-check-square"></i> When an unknown</li>
-                            </ul>
-                        </div>
-
-                        <div class="col-sm-6">
-                            <ul class="nostyle">
-                                <li><i class="fa fa-check-square"></i> The printing and typesetting</li>
-                                <li><i class="fa fa-check-square"></i> Lorem Ipsum has been</li>
-                            </ul>
-                        </div>
-                    </div>-->
-
-                    <a class="btn btn-primary" href="#">Learn More</a>
-
-                </div>
+            <div>
+                <h3 class="text-center">The Hardware</h3>
+                <img class="img-responsive" src="images/about/mdr_hardware_block_diagram.png" alt="hardware block diagram">
             </div>
         </div>
     </section><!--/#about-->
@@ -230,6 +207,17 @@
                         <img class="img-responsive" src="images/portfolio/mdr_thumbnail.PNG" alt="">
                         <div class="portfolio-info">
                             <a href="files/MDR_Final.pdf"><h3>MDR Slides</h3>
+                            <i class="fa fa-eye"></i></a>
+                            <!--<a class="preview" href="images/portfolio/full.jpg" rel="prettyPhoto"><i class="fa fa-eye"></i></a>-->
+                        </div>
+                    </div>
+                </div><!--/.portfolio-item-->
+
+                <div class="portfolio-item mdr">
+                    <div class="portfolio-item-inner">
+                        <img class="img-responsive" src="images/portfolio/mdr_report_thumbnail.PNG" alt="">
+                        <div class="portfolio-info">
+                            <a href="files/MDR_Report.pdf"><h3>MDR Report</h3>
                             <i class="fa fa-eye"></i></a>
                             <!--<a class="preview" href="images/portfolio/full.jpg" rel="prettyPhoto"><i class="fa fa-eye"></i></a>-->
                         </div>

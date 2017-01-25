@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>AutoUmp</title>
+	<!-- core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/font-awesome.min.css" rel="stylesheet">
+    <link href="css/animate.min.css" rel="stylesheet">
+    <link href="css/owl.carousel.css" rel="stylesheet">
+    <link href="css/owl.transitions.css" rel="stylesheet">
+    <link href="css/prettyPhoto.css" rel="stylesheet">
+    <link href="css/main.css" rel="stylesheet">
+    <link href="css/responsive.css" rel="stylesheet">
+    <!--[if lt IE 9]>
+    <script src="js/html5shiv.js"></script>
+    <script src="js/respond.min.js"></script>
+    <![endif]-->
+    <link rel="shortcut icon" href="images/ico/favicon.ico">
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="images/ico/apple-touch-icon-144-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="images/ico/apple-touch-icon-114-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="images/ico/apple-touch-icon-72-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" href="images/ico/apple-touch-icon-57-precomposed.png">
+</head><!--/head-->
+
+<body id="home" class="homepage">
+
+    <header id="header">
+        <nav id="main-menu" class="navbar navbar-default navbar-fixed-top" role="banner">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="index.html"><img src="images/logo_smallererer.png" alt="logo"></a>
+                </div>
+
+                <div class="collapse navbar-collapse navbar-right">
+                    <ul class="nav navbar-nav">
+                        <li class="scroll active"><a href="#home">Home</a></li>
+                        <li class="scroll"><a href="#about">About</a></li>
+                        <li class="scroll"><a href="#meet-team">Team</a></li>
+                        <li class="scroll"><a href="#portfolio">Downloads</a></li>
+                        <li class="scroll"><a href="#get-in-touch">Contact</a></li>
+                    </ul>
+                </div>
+            </div><!--/.container-->
+        </nav><!--/nav-->
+    </header><!--/header-->
+
+    <section id="cta2">
+          <div class="container">
+              <div class="text-center">
+                  <h2 class="wow fadeInUp" data-wow-duration="300ms" data-wow-delay="0ms"><span>UMPING</span> JUST GOT A WHOLE LOT EASIER.</h2>
+                  <p class="wow fadeInUp" data-wow-duration="300ms" data-wow-delay="100ms">Say goodbye to the bitter arguments and blown calls. <br /></p>
+                  <!--<img class="img-responsive wow fadeIn" src="images/cta2/cta2-img.png" alt="" data-wow-duration="300ms" data-wow-delay="300ms">-->
+              </div>
+          </div>
+      </section>
+
+    <section id="cta" class="wow fadeIn">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-9">
+                    <h2>The Better Way To Umpire</h2>
+                    <p>Determining strikes and balls without a professional umpire is difficult and inaccurate. The catcher-as-umpire solution leads to biased calls in times of high intensity and emotion. Enter AutoUmp, the home plate that doubles as an umpire. Open the app, connect via bluetooth, start your game, and play away — no umping necessary.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section><!--/#cta-->
+
+    <section id="about">
+        <div class="container">
+
+            <div class="section-header">
+                <h2 class="section-title text-center wow fadeInDown">About The Project</h2>
+                <p class="text-center wow fadeInDown">The AutoUmp project is part computer vision and part embedded systems design and integration. Two cameras embedded in the plate monitor for a ball flying overhead. If seen, the point where the ball crosses the strike zone in each video feed is calculated. The data from both cameras is integrated to find the location where the ball passed through the strike zone and make the call.</p>
+            </div>
+
+            <div>
+                <h3 class="text-center">The Algorithm</h3>
+                <img class="img-responsive" src="images/about/mdr_software_block_diagram.png" alt="software block diagram">
+                <p>To start, we perform background subtraction and thresholding on the current frame and the previous frame, creating a new image that has white pixels only where an object has moved since the last frame. This new image is passed through a denoising filter to eliminate stray noise or camera malfunctions that may be incorrectly labeled as objects.</p>
+
+                <p>The denoised image is then passed to an object detection function, which has two main components. First, a flood-fill algorithm identifies connected regions of white pixels, giving each a unique ID and summary information of each in a table. Second, every object ID that is connected to the edge of the image is removed. This second step allows us to detect a ball in flight instead of falsely detecting a player’s hand, a bat, etc., as these objects are not in flight and therefore must be connected to the edge of the image.</p>
+
+                <p>Because of the nature of the background subtraction, the images we will operate on will have two “balls” in them – each representing the location of the ball in a different frame. We can use this fact to our advantage to greatly simplify our calculations by connecting the centers of these two balls and finding the point at which they cross the middle of the image. Rather than attempt to calculate the 3-D location of a ball and seeing if it passes through the volume of the strike zone, we model the strike zone as a plane, and represent the line of pixels that make up the middle of the image as that plane. This allows us to convert a 3-D problem into a 2-D problem. The last step of our algorithm takes the point in each image where the ball passes through this plane, and uses simple geometry and the properties of the camera to calculate the x- and y-location of the ball in the plane of the strike zone. From here, it is a simple matter to match the location of the ball with the strike zone computer from the batter’s height.</p>
+            </div>
+
+            <div>
+                <h3 class="text-center">The Hardware</h3>
+                <img class="img-responsive" src="images/about/mdr_hardware_block_diagram.png" alt="hardware block diagram">
+            </div>
+        </div>
+    </section><!--/#about-->
+
+    <div class="divider"></div>
+
+    <section id="meet-team">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title text-center wow fadeInDown">Meet The Team</h2>
+                <p class="text-center wow fadeInDown"> </p>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-6 col-md-3">
+                    <div class="team-member wow fadeInUp" data-wow-duration="400ms" data-wow-delay="0ms">
+                        <div class="team-img">
+                            <img class="img-responsive" src="images/team/tim.jpg" alt="">
+                        </div>
+                        <div class="team-info">
+                            <h3>Tim Adams</h3>
+                            <span>Team Manager</span>
+                        </div>
+                        <p></p>
+                        <ul class="social-icons">
+                            <li><a href="https://www.linkedin.com/in/tbadams45"><i class="fa fa-linkedin"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-3">
+                    <div class="team-member wow fadeInUp" data-wow-duration="400ms" data-wow-delay="100ms">
+                        <div class="team-img">
+                            <img class="img-responsive" src="images/team/justin.jpg" alt="">
+                        </div>
+                        <div class="team-info">
+                            <h3>Justin Marple</h3>
+                            <span>Embedded Systems Extraordinaire</span>
+                        </div>
+                        <p></p>
+                        <ul class="social-icons">
+                            <li><a href="https://www.linkedin.com/in/justinmarple"><i class="fa fa-linkedin"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-3">
+                    <div class="team-member wow fadeInUp" data-wow-duration="400ms" data-wow-delay="200ms">
+                        <div class="team-img">
+                            <img class="img-responsive" src="images/team/jason.jpg" alt="">
+                        </div>
+                        <div class="team-info">
+                            <h3>Jason Camiel</h3>
+                            <span>App Guru, Head of Testing</span>
+                        </div>
+                        <p></p>
+                        <ul class="social-icons">
+                            <li><a href="https://www.linkedin.com/in/jason-camiel-83bbabb4"><i class="fa fa-linkedin"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-3">
+                    <div class="team-member wow fadeInUp" data-wow-duration="400ms" data-wow-delay="300ms">
+                        <div class="team-img">
+                            <img class="img-responsive" src="images/team/matt.jpg" alt="">
+                        </div>
+                        <div class="team-info">
+                            <h3>Matt Barnes</h3>
+                            <span>Algorithm Master</span>
+                        </div>
+                        <p></p>
+                        <ul class="social-icons">
+                            <li><a href="https://www.linkedin.com/in/matthew-barnes-71b235b4"><i class="fa fa-linkedin"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section><!--/#meet-team-->
+
+  <section id="portfolio">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title text-center wow fadeInDown">Downloads</h2>
+                <p class="text-center wow fadeInDown">The documents below track our progress throughout the year as we hit PDR (Preliminary Design Review) in October and MDR (Mid-year Design Review) in December.</p>
+            </div>
+
+            <div class="text-center">
+                <ul class="portfolio-filter">
+                    <li><a class="active" href="#" data-filter="*">All Documents</a></li>
+                    <li><a href="#" data-filter=".pdr">PDR</a></li>
+                    <li><a href="#" data-filter=".mdr">MDR</a></li>
+                </ul><!--/#portfolio-filter-->
+            </div>
+
+            <div class="portfolio-items">
+                <div class="portfolio-item pdr">
+                    <div class="portfolio-item-inner">
+                        <img class="img-responsive" src="images/portfolio/pdr_thumbnail.PNG" alt="">
+                        <div class="portfolio-info">
+                            <a href="files/PDR_Final.pdf"><h3>PDR Slides</h3>
+                            <i class="fa fa-eye"></i></a>
+                            <!--<a class="preview" href="images/portfolio/full.jpg" rel="prettyPhoto"><i class="fa fa-eye"></i></a>-->
+                        </div>
+                    </div>
+                </div><!--/.portfolio-item-->
+
+                <div class="portfolio-item mdr">
+                    <div class="portfolio-item-inner">
+                        <img class="img-responsive" src="images/portfolio/mdr_thumbnail.PNG" alt="">
+                        <div class="portfolio-info">
+                            <a href="files/MDR_Final.pdf"><h3>MDR Slides</h3>
+                            <i class="fa fa-eye"></i></a>
+                            <!--<a class="preview" href="images/portfolio/full.jpg" rel="prettyPhoto"><i class="fa fa-eye"></i></a>-->
+                        </div>
+                    </div>
+                </div><!--/.portfolio-item-->
+
+                <div class="portfolio-item mdr">
+                    <div class="portfolio-item-inner">
+                        <img class="img-responsive" src="images/portfolio/mdr_report_thumbnail.PNG" alt="">
+                        <div class="portfolio-info">
+                            <a href="files/MDR_Report.pdf"><h3>MDR Report</h3>
+                            <i class="fa fa-eye"></i></a>
+                            <!--<a class="preview" href="images/portfolio/full.jpg" rel="prettyPhoto"><i class="fa fa-eye"></i></a>-->
+                        </div>
+                    </div>
+                </div><!--/.portfolio-item-->
+            </div>
+        </div><!--/.container-->
+    </section><!--/#portfolio-->
+
+    <section id="get-in-touch">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title text-center wow fadeInDown">Get in Touch</h2>
+                <p class="text-center wow fadeInDown">If you have any questions about our project, we'd love to hear from you. <br> Shooot us an email at sdp17team1@gmail.com and we'll get back to you as soon as possible. </p>
+            </div>
+        </div>
+    </section><!--/#get-in-touch-->
+
+    <footer id="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-8">
+                    &copy; 2016 AutoUmp Team. Website template by <a target="_blank" href="http://shapebootstrap.net/" title="Free Twitter Bootstrap WordPress Themes and HTML templates">ShapeBootstrap</a>.
+                     <br> <em>Sports</em> graphic used in logo by <a href="http://www.flaticon.com/authors/freepik">Freepik</a> from <a href="http://www.flaticon.com/">Flaticon</a> is licensed under <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0">CC BY 3.0</a>. Made with <a href="http://logomakr.com" title="Logo Maker">Logo Maker</a>.
+                </div>
+            </div>
+        </div>
+    </footer><!--/#footer-->
+
+    <script src="js/jquery.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="http://maps.google.com/maps/api/js?sensor=true&libraries=places&key=AIzaSyDDlDR-503keCyf35Hr3Ub9nd7xUwhG4kg"></script>
+    <script src="js/owl.carousel.min.js"></script>
+    <script src="js/mousescroll.js"></script>
+    <script src="js/smoothscroll.js"></script>
+    <script src="js/jquery.prettyPhoto.js"></script>
+    <script src="js/jquery.isotope.min.js"></script>
+    <script src="js/jquery.inview.min.js"></script>
+    <script src="js/wow.min.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>

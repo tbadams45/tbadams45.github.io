@@ -87,7 +87,7 @@
 
             <div>
                 <h3 class="text-center">The Algorithm</h3>
-                <img class="img-responsive" src="images/about/software_block_diagram.png" alt="software block diagram">
+                <img class="img-responsive" src="images/about/software_block_diagram_small.png" alt="software block diagram">
                 <p>Our image processing algorithm is pipelined, with each section working on a different frame or set of frames. We begin with performing background subtraction on the raw image data to detect motion, a process where the current frame is subtracted from the previous frame. The resulting image removes the background and sets objects in motion as white pixels. In addition, this image appears to have two different balls in it, but which really represent the ball at the two different time points the frames were captured.</p>
 
                 <p>The next steps, denoise and object detection (also known as ”flood fill”), are parallelized across 6 cores, as they are by far the most computationally expensive step. In the denoising step, pixels are set to black if less than 3 of their 4- connected neighbors are white. Object detection then begins by finding connected sets of white pixels. The output is an array of objects, each modeled as rectangles.</p>
@@ -99,22 +99,28 @@
 
             <div>
                 <h3 class="text-center">The Hardware</h3>
-                <img class="img-responsive" src="images/about/hardware_block_diagram.png" alt="hardware block diagram">
+                <img class="img-responsive" src="images/about/hardware_block_diagram_small.png" alt="hardware block diagram">
 
-                <img class="img-responsive" src="images/about/xmos_board.png" alt="XMOS processor PCB design">
+                <p>The hardware that interfaces with the cameras and runs the image processing algorithm must be small enough to fit inside the plate and fast enough to both read 4.6 MB/sec of data from each camera and execute our image processing algorithm. We chose chose the XMOS XUF216-512-TQ128 16-core processor for this purpose. We had originally considered using an FPGA for the same purpose, but decided on the XMOS due to its ability to allow us to write all of our algorithms in C rather than in Verilog for FPGA, aiding greatly in reducing code complexity and testing.</p>
 
-                <img class="img-responsive" src="images/about/camera_board.png" alt="Camera board PCB design">
+                <p>The block diagrma above outlines the functional blocks and interfaces connecting them at the hardware level. We use a single XMOS 16-core processor, split into 2 tiles, which act as miniature 8-core processors with their own dedicated memory with a highly optimized communication interface connecting them.</p>
             </div>
 
             <div>
                 <h3 class="text-center">The Enclosure</h3>
-                <img class="img-responsive" src="images/about/plate.png" alt="The plate">
+                <img class="img-responsive" src="images/about/plate_small.png" alt="The plate">
+
+                To perform effectively in a real world environment, the sys- tem requires an enclosure that will protect the electronics during normal gameplay, including being stepped on, slid into, or hit with a bat. Rather than attempt to build such a enclosure from scratch, we opted to adapt a real home plate to our purposes. Two holes were cut into the top of the plate to allow the camera to see through, while embedded sapphire watch crystals protect the lenses from shock, dirt, The sapphire crystals were selected due to their ranking on the Mohs hardness scale (9), which exceeds that of quartz (7), a material typically found in the dirt of a baseball out to provide space for the cameras, processor, and the battery. 3D printed mounts raise the cameras to just beneath the crystals and are angled 15 degrees inward to allow each camera to see the entire strike zone.
+
+                <p>The entire system is secured to an aluminum backing, which fits snugly into the plate. The aluminum backing is throughout the game. These straps allow the backing to be removed to allow battery charging.</p>
             </div>
 
             <div>
                 <h3 class="text-center">The App</h3>
-                <img class="img-responsive" src="images/about/app_1.png" alt="App: Settings">
-                <img class="img-responsive" src="images/about/app_2.png" alt="App: pitch tracker view">
+                <img class="img-responsive" src="images/about/app_2_small.png" alt="App: pitch tracker view">
+                The app is the main interaction point between our system and the user. It will be the only place the user can interrupt and change calls, and will indicate the called pitches provided by the system. Developed for Android, the app will allow users to start a new game and pair with their plate via Bluetooth. After doing so, the main game screen appears, where the user can view and update the current pitch count, score, and inning. All labels double as buttons which increment their respective values, rolling over to 0 if they exceed the maximum possible value (i.e. 3 for outs or strikes and 4 for balls). The user can also view the most recent pitch on a separate screen.
+                <img class="img-responsive" src="images/about/app_1_small.png" alt="App: Settings">
+
             </div>
         </div>
     </section><!--/#about-->

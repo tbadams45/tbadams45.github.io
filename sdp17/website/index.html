@@ -81,22 +81,40 @@
 
             <div class="section-header">
                 <h2 class="section-title text-center wow fadeInDown">About The Project</h2>
-                <p class="text-center wow fadeInDown">The AutoUmp project is part computer vision and part embedded systems design and integration. Two cameras embedded in the plate monitor for a ball flying overhead. If seen, the point where the ball crosses the strike zone in each video feed is calculated. The data from both cameras is integrated to find the location where the ball passed through the strike zone and make the call.</p>
+                <p class="text-center wow fadeInDown">The AutoUmp project is part computer vision and part embedded systems design and integration. Two cameras embedded in the plate monitor for a ball flying overhead. If they see one, they determine the point
+                at which it passes through the strike zone. Using the data from both cameras allows us to calculate both the x- and y-coordinates of the pitch as it passes through the strike zone, and determine if it is a ball or a strike.</p>
             </div>
 
             <div>
                 <h3 class="text-center">The Algorithm</h3>
-                <img class="img-responsive" src="images/about/mdr_software_block_diagram.png" alt="software block diagram">
-                <p>To start, we perform background subtraction and thresholding on the current frame and the previous frame, creating a new image that has white pixels only where an object has moved since the last frame. This new image is passed through a denoising filter to eliminate stray noise or camera malfunctions that may be incorrectly labeled as objects.</p>
+                <img class="img-responsive" src="images/about/software_block_diagram.png" alt="software block diagram">
+                <p>Our image processing algorithm is pipelined, with each section working on a different frame or set of frames. We begin with performing background subtraction on the raw image data to detect motion, a process where the current frame is subtracted from the previous frame. The resulting image removes the background and sets objects in motion as white pixels. In addition, this image appears to have two different balls in it, but which really represent the ball at the two different time points the frames were captured.</p>
 
-                <p>The denoised image is then passed to an object detection function, which has two main components. First, a flood-fill algorithm identifies connected regions of white pixels, giving each a unique ID and summary information of each in a table. Second, every object ID that is connected to the edge of the image is removed. This second step allows us to detect a ball in flight instead of falsely detecting a player’s hand, a bat, etc., as these objects are not in flight and therefore must be connected to the edge of the image.</p>
+                <p>The next steps, denoise and object detection (also known as ”flood fill”), are parallelized across 6 cores, as they are by far the most computationally expensive step. In the denoising step, pixels are set to black if less than 3 of their 4- connected neighbors are white. Object detection then begins by finding connected sets of white pixels. The output is an array of objects, each modeled as rectangles.</p>
 
-                <p>Because of the nature of the background subtraction, the images we will operate on will have two “balls” in them – each representing the location of the ball in a different frame. We can use this fact to our advantage to greatly simplify our calculations by connecting the centers of these two balls and finding the point at which they cross the middle of the image. Rather than attempt to calculate the 3-D location of a ball and seeing if it passes through the volume of the strike zone, we model the strike zone as a plane, and represent the line of pixels that make up the middle of the image as that plane. This allows us to convert a 3-D problem into a 2-D problem. The last step of our algorithm takes the point in each image where the ball passes through this plane, and uses simple geometry and the properties of the camera to calculate the x- and y-location of the ball in the plane of the strike zone. From here, it is a simple matter to match the location of the ball with the strike zone computer from the batter’s height.</p>
+                <p>
+                These arrays are passed to an object tracker core, which unites the information from all 6 cores to track a pitch. When the ball passes the middle of the screen, the pixel at which its trajectory along the middle column is calculated and a flag is set for this camera. This pixel represents the vector in the strike zone plane where the ball may be. When both flags are set, the information from both cameras is combined and the pitch is calculated. The result is then sent to the app via Bluetooth.
+                </p>
             </div>
 
             <div>
                 <h3 class="text-center">The Hardware</h3>
-                <img class="img-responsive" src="images/about/mdr_hardware_block_diagram.png" alt="hardware block diagram">
+                <img class="img-responsive" src="images/about/hardware_block_diagram.png" alt="hardware block diagram">
+
+                <img class="img-responsive" src="images/about/xmos_board.png" alt="XMOS processor PCB design">
+
+                <img class="img-responsive" src="images/about/camera_board.png" alt="Camera board PCB design">
+            </div>
+
+            <div>
+                <h3 class="text-center">The Enclosure</h3>
+                <img class="img-responsive" src="images/about/plate.png" alt="The plate">
+            </div>
+
+            <div>
+                <h3 class="text-center">The App</h3>
+                <img class="img-responsive" src="images/about/app_1.png" alt="App: Settings">
+                <img class="img-responsive" src="images/about/app_2.png" alt="App: pitch tracker view">
             </div>
         </div>
     </section><!--/#about-->
@@ -179,7 +197,7 @@
         <div class="container">
             <div class="section-header">
                 <h2 class="section-title text-center wow fadeInDown">Downloads</h2>
-                <p class="text-center wow fadeInDown">The documents below track our progress throughout the year as we hit PDR (Preliminary Design Review) in October and MDR (Mid-year Design Review) in December.</p>
+                <p class="text-center wow fadeInDown">The documents below track our progress throughout the year as we hit PDR (Preliminary Design Review) in October, MDR (Mid-year Design Review) in December, CDR (Cumulative Design Review) in March, and FPR (Final Project Review) and Demo Day in April.</p>
             </div>
 
             <div class="text-center">
@@ -187,6 +205,8 @@
                     <li><a class="active" href="#" data-filter="*">All Documents</a></li>
                     <li><a href="#" data-filter=".pdr">PDR</a></li>
                     <li><a href="#" data-filter=".mdr">MDR</a></li>
+                    <li><a href="#" data-filter=".cdr">CDR</a></li>
+                    <li><a href="#" data-filter=".fpr">FPR/Demo Day</a></li>
                 </ul><!--/#portfolio-filter-->
             </div>
 
@@ -218,6 +238,53 @@
                         <img class="img-responsive" src="images/portfolio/mdr_report_thumbnail.PNG" alt="">
                         <div class="portfolio-info">
                             <a href="files/MDR_Report.pdf"><h3>MDR Report</h3>
+                            <i class="fa fa-eye"></i></a>
+                            <!--<a class="preview" href="images/portfolio/full.jpg" rel="prettyPhoto"><i class="fa fa-eye"></i></a>-->
+                        </div>
+                    </div>
+                </div><!--/.portfolio-item-->
+
+
+                <div class="portfolio-item cdr">
+                    <div class="portfolio-item-inner">
+                        <img class="img-responsive" src="images/portfolio/cdr_presentation_thumbnail.png" alt="">
+                        <div class="portfolio-info">
+                            <a href="files/CDR_Final.pdf"><h3>CDR Presentation</h3>
+                            <i class="fa fa-eye"></i></a>
+                            <!--<a class="preview" href="images/portfolio/full.jpg" rel="prettyPhoto"><i class="fa fa-eye"></i></a>-->
+                        </div>
+                    </div>
+                </div><!--/.portfolio-item-->
+
+
+                <div class="portfolio-item fpr">
+                    <div class="portfolio-item-inner">
+                        <img class="img-responsive" src="images/portfolio/fpr_presentation_thumbnail.png" alt="">
+                        <div class="portfolio-info">
+                            <a href="files/FPR_Slides_Final.pdf"><h3>FPR Presentation</h3>
+                            <i class="fa fa-eye"></i></a>
+                            <!--<a class="preview" href="images/portfolio/full.jpg" rel="prettyPhoto"><i class="fa fa-eye"></i></a>-->
+                        </div>
+                    </div>
+                </div><!--/.portfolio-item-->
+
+
+                <div class="portfolio-item fpr">
+                    <div class="portfolio-item-inner">
+                        <img class="img-responsive" src="images/portfolio/fpr_report_thumbnail.png" alt="">
+                        <div class="portfolio-info">
+                            <a href="files/SDP_Report.pdf"><h3>FPR Report</h3>
+                            <i class="fa fa-eye"></i></a>
+                            <!--<a class="preview" href="images/portfolio/full.jpg" rel="prettyPhoto"><i class="fa fa-eye"></i></a>-->
+                        </div>
+                    </div>
+                </div><!--/.portfolio-item-->
+
+                <div class="portfolio-item fpr">
+                    <div class="portfolio-item-inner">
+                        <img class="img-responsive" src="images/portfolio/poster_thumbnail.png" alt="">
+                        <div class="portfolio-info">
+                            <a href="files/SDP17_poster_Team1.pdf"><h3>Demo Day Poster</h3>
                             <i class="fa fa-eye"></i></a>
                             <!--<a class="preview" href="images/portfolio/full.jpg" rel="prettyPhoto"><i class="fa fa-eye"></i></a>-->
                         </div>

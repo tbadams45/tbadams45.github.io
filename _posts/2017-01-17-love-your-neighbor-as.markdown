@@ -6,7 +6,7 @@ layout: post
 In Matthew 22, Jesus says that the commands to love God with everything and to love your neighbor as yourself are the foundation of all of the other commands in scripture. 
 
 > Hearing that Jesus had silenced the Sadducees, the Pharisees got together. One of them, an expert in the law, tested him with this question: 'Teacher, which is the greatest commandment in the Law?' 
-> Jesus replied: 'Love the Lord your God with all your head and with all your soul and with all your mind. And the second is like it: Love your neighbor as yourself. All the Law and the Prophets hang on these two commandments.' *Matthew 22:34-40*
+> Jesus replied: 'Love the Lord your God with all your heart and with all your soul and with all your mind. And the second is like it: Love your neighbor as yourself. All the Law and the Prophets hang on these two commandments.' *Matthew 22:34-40*
 
 As far as day-to-day relationships go, then, "loving your neighbor as yourself" is a good litmus test for how we're doing obeying God. 
 

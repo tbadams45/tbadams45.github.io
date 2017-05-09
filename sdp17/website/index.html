@@ -103,7 +103,7 @@
 
                 <p>The hardware that interfaces with the cameras and runs the image processing algorithm must be small enough to fit inside the plate and fast enough to both read 4.6 MB/sec of data from each camera and execute our image processing algorithm. We chose chose the XMOS XUF216-512-TQ128 16-core processor for this purpose. We had originally considered using an FPGA for the same purpose, but decided on the XMOS due to its ability to allow us to write all of our algorithms in C rather than in Verilog for FPGA, aiding greatly in reducing code complexity and testing.</p>
 
-                <p>The block diagrma above outlines the functional blocks and interfaces connecting them at the hardware level. We use a single XMOS 16-core processor, split into 2 tiles, which act as miniature 8-core processors with their own dedicated memory with a highly optimized communication interface connecting them.</p>
+                <p>The block diagram above outlines the functional blocks and interfaces connecting them at the hardware level. We use a single XMOS 16-core processor, split into 2 tiles, which act as miniature 8-core processors with their own dedicated memory with a highly optimized communication interface connecting them.</p>
             </div>
 
             <div>

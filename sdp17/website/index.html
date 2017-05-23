@@ -87,7 +87,7 @@
 
             <div>
                 <h3 class="text-center">The Algorithm</h3>
-                <img class="img-responsive text-center" src="images/about/software_block_diagram_small.png" alt="software block diagram">
+                <img class="img-responsive center-block" src="images/about/software_block_diagram_small.png" alt="software block diagram">
                 <p>Our image processing algorithm is pipelined, with each section working on a different frame or set of frames. We begin with performing background subtraction on the raw image data to detect motion, a process where the current frame is subtracted from the previous frame. The resulting image removes the background and sets objects in motion as white pixels. In addition, this image appears to have two different balls in it, but which really represent the ball at the two different time points the frames were captured.</p>
 
                 <p>The next steps, denoise and object detection (also known as ”flood fill”), are parallelized across 6 cores, as they are by far the most computationally expensive step. In the denoising step, pixels are set to black if less than 3 of their 4- connected neighbors are white. Object detection then begins by finding connected sets of white pixels. The output is an array of objects, each modeled as rectangles.</p>

@@ -99,7 +99,7 @@
 
             <div>
                 <h3 class="text-center">The Hardware</h3>
-                <img class="img-responsive text-center" src="images/about/hardware_block_diagram_small.png" alt="hardware block diagram">
+                <img class="img-responsive center-block" src="images/about/hardware_block_diagram_small.png" alt="hardware block diagram">
 
                 <p>The hardware that interfaces with the cameras and runs the image processing algorithm must be small enough to fit inside the plate and fast enough to both read 4.6 MB/sec of data from each camera and execute our image processing algorithm. We chose chose the XMOS XUF216-512-TQ128 16-core processor for this purpose. We had originally considered using an FPGA for the same purpose, but decided on the XMOS due to its ability to allow us to write all of our algorithms in C rather than in Verilog for FPGA, aiding greatly in reducing code complexity and testing.</p>
 
@@ -108,7 +108,7 @@
 
             <div>
                 <h3 class="text-center">The Enclosure</h3>
-                <img class="img-responsive text-center" src="images/about/plate_small.png" alt="The plate">
+                <img class="img-responsive center-block" src="images/about/plate_small.png" alt="The plate">
 
                 To perform effectively in a real world environment, the sys- tem requires an enclosure that will protect the electronics during normal gameplay, including being stepped on, slid into, or hit with a bat. Rather than attempt to build such a enclosure from scratch, we opted to adapt a real home plate to our purposes. Two holes were cut into the top of the plate to allow the camera to see through, while embedded sapphire watch crystals protect the lenses from shock, dirt, The sapphire crystals were selected due to their ranking on the Mohs hardness scale (9), which exceeds that of quartz (7), a material typically found in the dirt of a baseball out to provide space for the cameras, processor, and the battery. 3D printed mounts raise the cameras to just beneath the crystals and are angled 15 degrees inward to allow each camera to see the entire strike zone.
 
@@ -117,9 +117,9 @@
 
             <div>
                 <h3 class="text-center">The App</h3>
-                <img class="img-responsive text-center" src="images/about/app_2_small.png" alt="App: pitch tracker view">
+                <img class="img-responsive center-block" src="images/about/app_2_small.png" alt="App: pitch tracker view">
                 The app is the main interaction point between our system and the user. It will be the only place the user can interrupt and change calls, and will indicate the called pitches provided by the system. Developed for Android, the app will allow users to start a new game and pair with their plate via Bluetooth. After doing so, the main game screen appears, where the user can view and update the current pitch count, score, and inning. All labels double as buttons which increment their respective values, rolling over to 0 if they exceed the maximum possible value (i.e. 3 for outs or strikes and 4 for balls). The user can also view the most recent pitch on a separate screen.
-                <img class="img-responsive text-center" src="images/about/app_1_small.png" alt="App: Settings">
+                <img class="img-responsive center-block" src="images/about/app_1_small.png" alt="App: Settings">
 
             </div>
         </div>

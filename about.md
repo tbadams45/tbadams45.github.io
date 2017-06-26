@@ -3,7 +3,7 @@ layout: page
 title: About
 ---
 
-Welcome! I'm Tim Adams - a disciple of Jesus Christ and current undergrad at UMass Amherst, studying computer systems engineering. 
+Welcome! I'm Tim Adams - a disciple of Jesus Christ. I recenly graduated from UMass Amherst with a B.S. computer systems engineering, and am pursuing a Masters of Engienering in Environmental Engineering Science at MIT. 
 
 This site is a fairly random collection of things I'm interested in, care about, and/or consider worth sharing. As I continue to add to what's here, I intend to include posts that cover most/all areas of my life -- my faith, hobbies (when I figure out what they are), school, work, etc.
 

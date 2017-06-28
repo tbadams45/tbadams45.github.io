@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8" />
+		<title>Impacts of Investment Decisions</title>
+
+		<!-- D3 -->
+		<script src="http://d3js.org/d3.v4.min.js"></script>
+		<script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/d3-legend/2.24.0/d3-legend.js"></script>
+
+		<!-- CSS -->
+		<style>
+
+		div#buttons {
+			width: 540px;
+			margin-left: 10px;
+			margin-right: auto;
+			margin-top: auto;
+			margin-bottom: auto;
+		}
+
+		body {
+			font: 10px sans-serif;
+		}
+
+		.legend {
+			font: 14px sans-serif;
+		}
+
+		.button {
+			background-color: #008CBA;
+		    border: none;
+		    color: white;
+		    padding: 10px 10px;
+		    text-align: center;
+		    text-decoration: none;
+		    display: inline-block;
+		    font-size: 16px;
+		    margin: 4px 2px;
+		    cursor: pointer;
+		}
+
+		.button#reset {
+			background-color: #f44336;
+		}
+
+		text {
+			fill: black;
+		}
+
+		.title {
+			font: 14px sans-serif;
+		}
+
+		.axis path,
+		.axis line {
+			fill: none;
+			stroke: #000;
+			shape-rendering: crispEdges;
+		}
+
+		.point {
+			stroke: #808080;
+		}
+		</style>
+	</head>
+
+	<body>
+		<div id="buttons"></div>
+		<div id="plot"></div>
+		<div id="legend"></div>
+
+		<script type="text/javascript">
+		// define your plans. These are the names in the csv file
+		var plans = ["Plan1", "Plan2", "Plan3", "Plan4", "Plan5", "Plan6"];
+
+
+		var buttonIDs = [];
+		for(var i = 0; i < plans.length; i++) {
+		    buttonIDs.push("no" + plans[i]);
+			buttonIDs.push(plans[i]);
+		}
+
+		// add buttons
+		d3.select("#buttons").selectAll("input")
+			.data(buttonIDs).enter()
+			.append("input")
+			.attr("type", "button")
+			.attr("class", "button")
+			.attr("value", function(d) { return d;})
+			.attr("id", function(d) { return d;})
+
+		d3.select("#buttons").append("input")
+			.attr("type", "button")
+			.attr("class", "button")
+			.attr("id", "reset")
+			.attr("value", "Reset");
+
+
+
+		// set the dimensions and margins
+		var margin = {top: 20, right: 20, bottom: 30, left: 40},
+		    width = 600 - margin.left - margin.right,
+		    height = 500 - margin.top - margin.bottom;
+
+		// set the ranges
+		var x = d3.scaleLinear().range([0, width]);
+		var y = d3.scaleLinear().range([height, 0]);
+		var color = d3.scaleSequential(d3.interpolateOranges);
+		var size  = d3.scaleLinear().range([3.5, 9]);
+
+
+		// set the axes
+		var xAxis = d3.axisBottom(x);
+		var yAxis = d3.axisLeft(y);
+
+		// define transition
+
+		// define plot area
+		var svg = d3.select("body").append("svg")
+		  .attr("width", width + margin.left + margin.right)
+	      .attr("height", height + margin.top + margin.bottom)
+	      .append("g")
+	      .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+
+	    d3.csv("data_full.csv", function(err, data) {
+	    	// convert strings to numbers (csv reads the rows as strings) 
+	    	data.forEach(function(d) {
+	    		d.Cost = +d.Cost;
+	    		d.Recovery = +d.Recovery;
+	    		d.Robustness = +d.Robustness;
+	    		d.Yield = +d.Yield;
+	    		d.Plan1 = +d.Plan1;
+	    		d.Plan2 = +d.Plan2;
+	    		d.Plan3 = +d.Plan3;
+	    		d.Plan4 = +d.Plan4;
+	    		d.Plan5 = +d.Plan5;
+	    		d.Plan6 = +d.Plan6;
+	    	});
+
+	    	// set up domains of scales by examining their extents
+	    	x.domain(d3.extent(data, function(d) { return d.Yield;} )).nice();
+	    	y.domain(d3.extent(data, function(d) { return d.Cost; } )).nice();
+	    	//color.domain([0, 100]);
+	    	color.domain(d3.extent(data, function(d) { return d.Recovery;}));
+	    	size.domain(d3.extent(data, function(d) { return d.Robustness;}));
+
+
+	    	// add the axes
+	    	svg.append("g")
+			  .attr("class", "x axis")
+			  .attr("transform", "translate(0," + height + ")")
+			  .call(xAxis)
+			  .append("text")
+			  .attr("class", "label")
+			  .attr("x", width-75)
+			  .attr("y", -10)
+			  .style("text-anchor", "middle")
+			  .text("Yield (MCM)")
+			  .attr("class", "title");
+
+			svg.append("g")
+			  .attr("class", "y axis")
+			  .call(yAxis)
+			  .append("text")
+			  .attr("class", "label")
+			  .attr("transform", "rotate(-90)")
+			  .attr("y", 10)
+			  .attr("x", -75)
+			  .attr("dy", ".71em")
+			  .style("text-anchor", "middle")
+			  .text("Cost (Million Mex$)")
+			  .attr("class", "title");
+
+			svg.append("g").selectAll(".point")
+			  .data(data)
+			  .enter().append("circle")
+			  .attr("class", "point")
+			  .attr("r", function(d) { return size(d.Robustness); })
+			  .attr("cx", function(d) { return x(d.Yield); })
+			  .attr("cy", function(d) { return y(d.Cost);  })
+			  .style("fill", function(d) { return color(d.Recovery); });
+
+			// generate on click events 
+			d3.select("#reset").on("click", function() {
+				reset(data);
+			});
+
+			for(var i = 0; i < plans.length; i++) {
+				generateOnClickEvents(plans[i], data);
+			}
+
+
+
+			// build the color legend
+			svg.append("g")
+				.attr("class", "legendColor legend")
+				.attr("transform", "translate(" + (width - 50) + "," + (height - 200) + ")")
+
+			var legendColor = d3.legendColor()
+				.labelFormat(d3.format(".0f"))
+				.title("Recovery")
+				.shapeWidth(30)
+				.cells(6)
+				.titleWidth("100")
+				.scale(color);
+
+			d3.select(".legendColor")
+				.call(legendColor);
+
+			// build the size legend
+			svg.append("g")
+				.attr("class", "legendSize legend")
+				.attr("transform", "translate(" + (width - 150) + "," + (height - 200) + ")")
+
+			var legendSize = d3.legendSize()
+				.labelFormat(d3.format(".0%"))
+				.title("Robustness")
+				.scale(size)
+				.shape("circle")
+				.shapePadding(15)
+				.labelOffset(10);
+
+			d3.select(".legendSize")
+				.call(legendSize);
+	    })
+
+	    // the planIDs are the plans that will be used to identify pairs of plans that we want to animate.
+	    // therefore, planIDs will include all the investment plans that are *not* the button we are clicking.
+	    function update(data, planIDs) {
+	    	// DATA JOIN
+  			// Join new data with old elements, if any.
+	    	var points = svg.selectAll(".point")
+	    		.data(data, function(d) { 
+	    			return getID(d, [d[planIDs[0]], d[planIDs[1]], d[planIDs[2]], d[planIDs[3]], d[planIDs[4]]]);
+	    		});
+
+	    	// UPDATE
+  			// Update old elements as needed.
+  			points.transition()
+  				.attr("cx", function(d) { return x(d.Yield); })
+  				.attr("cy", function(d) { return y(d.Cost);  })
+				.duration(2000)
+				.delay(200)
+				.ease(d3.easeLinear)
+				.on("end", function () { // run another transition
+					d3.select(this).transition()
+					  	.attr("r", function(d) { return size(d.Robustness);})
+						.style("fill", function(d) { return color(d.Recovery); })
+						.duration(1000)
+						.delay(200)
+						.ease(d3.easeLinear);
+				})
+
+  			// ENTER
+  			// Create new elements as needed.
+			//
+			// ENTER + UPDATE
+			// After merging the entered elements with the update selection,
+  			// apply operations to both.
+
+  			// EXIT
+  			// Remove old elements as needed.
+  			points.exit().remove();
+	    }
+
+	    function reset(data) {
+	    	svg.selectAll(".point").remove();
+
+	    	var points = svg.selectAll(".point")
+	    		.data(data)
+				.enter().append("circle")
+				.attr("class", "point")
+				.attr("r", function(d) { return size(d.Robustness); })
+				.attr("cx", function(d) { return x(d.Yield); })
+				.attr("cy", function(d) { return y(d.Cost);  })
+				.style("fill", function(d) { return color(d.Recovery); });
+	    }
+
+	    // will couple investment decisions which share the same values of the elements of planIDs
+	    function getID(el, planIDs) {
+	    	return "" + planIDs[0] + planIDs[1] + planIDs[2] + planIDs[3] + planIDs[4];
+	    }
+
+	    // generates on click event for the given plan, using the given data
+	    function generateOnClickEvents(plan, data) {
+	    	d3.select("#" + plan).on("click", function() {
+				var filtered = data.filter(function (d) { return d[plan] === 1;});
+				update(filtered, remove(plans, plan)); // plans is a global variable (an array). Don't hate.
+			});
+
+	        d3.select("#no" + plan).on("click", function() {
+	     		var filtered = data.filter(function (d) { return d[plan] === 0;});
+	     		update(filtered, remove(plans, plan)); // plans is a global variable (an array). Don't hate.
+	     	});
+	    }
+
+		function remove(array, element) {
+			const index = array.indexOf(element);
+
+			if (index !== -1) {
+		    	array.splice(index, 1);
+			}
+
+			return array;
+		}
+		</script>
+	</body>
+</html>

@@ -1,6 +1,171 @@
+// Handles all parsing of the input file, builds Theme objects that contain
+// quotes for their particular Theme.
+class InputFileParser {
+	constructor() {}
 
-// key is abbreviationeviation, if applicable
-// value is 
+
+	containsAbbreviation(arr, abbr) {
+		for(var i = 0; i < arr.length; i++) {
+			if(arr[i].abbreviation === abbr) {
+				return true
+			}
+		}
+		return false
+	}
+
+	file(fileContents) {
+		// parse into individual entries
+		if(fileContents[0] === "\n") {
+			fileContents = fileContents.substring(1) // get rid of first 
+		}
+		var sliced = fileContents.split("\n\n")
+		console.log(sliced)
+
+		return sliced
+	}
+
+	quote(quote) {
+
+	}
+
+	// the line that holds the references obviously.
+	// e.g. "{Rom 9:28: Rom 13:10; Isa 10:22-23}"
+	referenceLine(str) {
+		var references = []
+
+
+		// Get content inside of curly braces. 
+		// See https://stackoverflow.com/questions/5520880/getting-content-between-curly-braces-in-javascript-regex
+		// for regex
+		var match = /{(.*?)}/.exec(str)
+		str = match[1] // actual result, without curly braces
+
+		if(str.includes("{") || str.includes("}")) { 
+			// curly braces may still exist in curly braces
+			return undefined
+		}
+
+		str = str.trim(); // get rid of white space
+
+		var referenceList = str.split(";")
+
+		for(var i = 0; i < referenceList.length; i++) {
+			var ref = this.reference(referenceList[i].trim())
+			if(ref === undefined) {
+				return undefined
+			}
+			references.push(ref)
+		}
+
+		return references
+	}
+
+	// Where a "reference" is, e.g. "1 Cor 14:5"
+	// Also possible:
+	//	"Jude 19"
+	// 	"Nicene Creed"
+	//  "Gen 2:3,5,9"
+	//  "Gen 2:3, 5, 9"
+	//  "Mt 15:13-19"
+	//
+	reference(ref) {
+		ref = ref.trim()
+
+		var name = ""
+		var chapter = ""
+		var verseNumber = ""
+		var verseText = ""
+
+		for(var i = 0; i < books.length; i++) {
+			if(ref.includes(books[i].abbreviation)) {
+				var len = books[i].abbreviation.length
+
+				var chapterVerse = ref.substring(len).trim()
+				chapterVerse = chapterVerse.split(":")
+				if(chapterVerse.length > 2) { // two or more colons in reference
+					return undefined
+				}
+			
+				var chapter = Number(chapterVerse[0].trim())
+				var verseText = chapterVerse[1].trim()
+			
+
+				// find verseNumber
+				var verseNumber;
+				var onComma = verseText.indexOf(",")
+				var onHyphen = verseText.indexOf("-")
+
+				var higher = onComma > onHyphen ? onComma : onHyphen
+				var lower  = onComma < onHyphen ? onComma : onHyphen
+
+				if(higher === -1) { // neither "-"" nor ","" is present 
+					verseNumber = Number(verseText.trim())
+				}
+				else if (lower !== -1) { // both exist
+					verseNumber = Number(verseText.substring(0, lower).trim())
+				} else { // only one exists
+					verseNumber = Number(verseText.substring(0, higher).trim())
+				}
+
+				return new Quote(
+					books[i].name, 
+					books[i].abbreviation, 
+					chapter, 
+					verseNumber, 
+					verseText)
+			}
+		}
+
+		// it's not a book, but the name of a topic.
+		// So just create a Quote with that name.
+		return new Quote(ref.trim(), ref.trim(), null, null, null)
+	}
+}
+
+// theme might be a book (e.g. Genesis) or a topic (e.g. Nonresistance)
+class Theme {
+	constructor(abbreviation, name) {
+		this.abbreviation = abbreviation
+		this.name = name
+		this.quotes = []
+	}
+
+	pushQuote(quote) {
+		this.quotes.push(quote)
+	}
+
+	// sort quotes array in order of chapter and then verseNumber
+	sortQuotes() {
+
+	}
+
+	// generates markdown text used to write Theme file
+	generateOutputText() {
+
+	}
+}
+
+
+class Quote {
+	constructor(name, abbreviation, chapter, verseNumber, verseText) {
+		this.name = name
+		this.abbreviation = abbreviation
+		this.chapter = chapter
+		this.verseNumber = verseNumber
+		this.verseText = verseText
+		this.content = null
+	}
+
+	setContent(content) {
+		this.content = content
+	}
+
+	// generates markdown text used to write Quote to file
+	generateOutputText() {
+
+	}
+}
+
 var books = [
 	{abbreviation: "Gen", name: "Genesis"},
 	{abbreviation: "Ex", name: "Exodus"},
@@ -35,7 +200,7 @@ var books = [
 	{abbreviation: "Jer", name: "Jeremiah"},
 	{abbreviation: "Lam", name: "Lamentations"},
 	{abbreviation: "Bar", name: "Baruch"},
-	{abbreviation: "Ezek", name: "Ezekial"},
+	{abbreviation: "Ezek", name: "Ezekiel"},
 	{abbreviation: "Dan", name: "Daniel"},
 	{abbreviation: "Hos", name: "Hosea"},
 	{abbreviation: "Joel", name: "Joel"},
@@ -75,98 +240,32 @@ var books = [
 	{abbreviation: "3 Jn", name: "3 John"},
 	{abbreviation: "Jude", name: "Jude"},
 	{abbreviation: "Rev", name: "Revelation"}
-];
+]
 
 function handleFileUpload() {
-	var fileReader = new FileReader();
+	var fileReader = new FileReader()
+	var parse = new InputFileParser()
 
 	fileReader.onload = function(file) {
-		var text = file.target.result;
-		parseFile(text);
+		var text = file.target.result
+		parse.file(text)
 
-	};
+	}
 
-	var files = document.getElementById("files").files;
+	var files = document.getElementById("files").files
 
 	for(var i = 0; i < files.length; i++) {
 
 		// calls fileReader.onload() when done
-		fileReader.readAsText(files[i]); 
+		fileReader.readAsText(files[i])
 	}
 
-	console.log(files.length);
-
-	console.log("hello");
+	console.log(files)
 }
 
-function containsAbbreviation(arr, abbr) {
-	for(var i = 0; i < arr.length; i++) {
-		if(arr[i].abbreviation === abbr) {
-			return true;
-		}
-	}
-	return false;
-}
-
-function parseFile(fileContents) {
-
-	// parse into individual entries
-	if(fileContents[0] === "\n") {
-		fileContents = fileContents.substring(1); // get rid of first 
-	}
-	var sliced = fileContents.split("\n\n");
-}
-
-// Where a "reference" is, e.g. "1 Cor 14:5"
-// Also possible:
-//	"Jude 19"
-// 	"Nicene Creed"
-//  "Gen 2:3,5,9"
-//  "Gen 2:3, 5, 9"
-//  "Mt 15:13-19"
-//
-function parseReference(reference) {
-	var abbreviation = "";
-	var chapter = "";
-	var verse = "";
-
-	for(var i = 0; i < books.length; i++) {
-		if(reference.includes(books[i].abbreviation)) {
-			var len = books[i].abbreviation.length;
-			abbreviation = reference.substring(0, len).trim();
-			chapterVerse = reference.substring(reference.length-len+1);
-			chapterVerse = chapterVerse.split(":");
-			chapter = Number(chapterVerse[0].trim());
-			verse = Number(chapterVerse[1].trim()); // can't handle verse ranges - need to think about how we handle those, and multiple chapters
-			break;
-		}
-	}
-
-	return {
-		abbreviation: abbreviation, 
-		chapter: chapter, 
-		verse: verse
-	};
-}
-
-// Need to be able to handle errors, and return that information back to 
-// the user so they know what to do about it and where to go. 
-
-
-// Where a reference list is, e.g., "{2 Cor 7:1; Lk 11:39; Mt 15:16-20; Mt 5:8}"
-// Could also have stray "}" or "{", or have random stuff after the "}" (such as "???")
-function parseReferenceLine(referenceList) {
-	var references = [];
-
-	// trim "{" and "}" off
-	referenceList = referenceList.slice(1);
-	referenceList = referenceList.slice(0, -1);
-
-	referenceList = referenceList.split("; ");
-
-	for(var i = 0; i < referenceList.length; i++) {
-		references.push(parseReference(referenceList[i]));
-	}
-
-	return references;
+module.exports = {
+	InputFileParser : InputFileParser,
+	Theme : Theme,
+	Quote : Quote,
+	books : books
 }

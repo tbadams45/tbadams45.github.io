@@ -6,6 +6,7 @@ class InputFileParser {
 	}
 
 	file(fileContents) {
+		var themes = new ThemeArray()
 		// parse into individual entries
 		if(fileContents[0] === "\n") {
 			fileContents = fileContents.substring(1) // get rid of first 
@@ -13,22 +14,33 @@ class InputFileParser {
 		var sliced = fileContents.trim().split("\n\n")
 
 		for(var i = 0; i < sliced.length; i++) {
-			var quotes = quote(sliced[i])
-			for(var j = 0; j < quotes.length; j++) {
-				pushQuote
+			var quotes = this.quote(sliced[i].trim())
+			if(quotes === undefined) {
+				console.log("I had some trouble understanding this one:\n", sliced[i])
+				console.log("Moving on")
+			} 
+			else {
+				for(var j = 0; j < quotes.length; j++) {
+					themes.addQuote(quotes[j])
+				}
 			}
 		}
+
+		themes.sortEachTheme()
+		themes.sortThemeArray()
+
+		return themes
 	}
 
-	// parses an entire quote
+	// parses an entire quote (may have multiple references)
 	quote(quote) {
 		var firstLineBreak = quote.indexOf("\n")
 		var references = quote.substring(0, firstLineBreak)
-		quote = quote.substring(firstLineBreak)
+		var quoteContent = quote.substring(firstLineBreak).trim()
 
 		// proxy for determining if there wasn't a proper line break 
 		// between two quotes
-		if(quote.includes("{") || quote.includes("}")) {
+		if(quoteContent.includes("{") || quoteContent.includes("}")) {
 			return undefined
 		}
 
@@ -38,7 +50,7 @@ class InputFileParser {
 		}
 
 		for(var i = 0; i < parsedQuotes.length; i++) {
-			parsedQuotes.content = quote
+			parsedQuotes[i].setContent(quoteContent)
 		}
 
 		return parsedQuotes
@@ -86,27 +98,45 @@ class InputFileParser {
 		var verseText = ""
 
 		for(var i = 0; i < bibleBooks.books.length; i++) {
-			if(ref.includes(bibleBooks.books[i].abbreviation)) {
+			var abbr = bibleBooks.books[i].abbreviation
+
+			if(ref.indexOf(abbr) === 0) {
 				var len = bibleBooks.books[i].abbreviation.length
 
-				var chapterVerse = ref.substring(len).trim()
-				chapterVerse = chapterVerse.split(":")
-				if(chapterVerse.length > 2) { // two or more colons in reference
-					return undefined
-				}
-			
-				var chapter = Number(chapterVerse[0].trim())
-				var verseText = chapterVerse[1].trim()
-			
-				// find verseNumber
-				var vInfo = this.verse(verseText)
+				var chapterVerse = ref.substring(len).trim() // cut off abbreviation
 
-				return new Quote(
-					bibleBooks.books[i].abbreviation, 
-					bibleBooks.books[i].name, 
-					chapter, 
-					vInfo.verseNumber, 
-					verseText)
+				var numColons = chapterVerse.split(":").length - 1
+				
+				if(numColons === 0) {
+					// no colons. this means we're dealing with a one chapter book
+					var vInfo = this.verse(chapterVerse)
+					return new Quote(
+						bibleBooks.books[i].abbreviation,
+						bibleBooks.books[i].name,
+						1,
+						vInfo.verseNumber,
+						vInfo.verseText)
+				} 
+				else if (numColons > 1) {
+					// invalid; we don't know how to deal with two or more colons
+					return undefined
+				} 
+				else {
+					chapterVerse = chapterVerse.split(":")
+			
+					var chapter = Number(chapterVerse[0].trim())
+					var verseText = chapterVerse[1].trim()
+				
+					// find verseNumber
+					var vInfo = this.verse(verseText)
+
+					return new Quote(
+						bibleBooks.books[i].abbreviation, 
+						bibleBooks.books[i].name, 
+						chapter, 
+						vInfo.verseNumber, 
+						verseText)
+				}
 			}
 		}
 
@@ -164,17 +194,24 @@ class Theme {
 		// see MDN documentation on array.sort()
 		this.quotes.sort(function(a, b) {
 			if(a.chapter < b.chapter) {
-				return -1;
+				return -1
 			}
 			else if(a.chapter > b.chapter) {
-				return 1;
+				return 1
 			}
 			else { // chapters equal
-				if(a.verseNumber <= b.verseNumber) {
-					return -1;
+				if(a.verseNumber < b.verseNumber) {
+					return -1
+				}
+				else if(a.verseNumber > b.verseNumber) {
+					return 1
 				}
 				else {
-					return 1;
+					// chapters AND verses are equal.
+					// sort by author
+					var authorA = a.findAuthor()
+					var authorB = b.findAuthor()
+					return anf.compare(authorA, authorB)
 				}
 			}
 		})
@@ -182,7 +219,25 @@ class Theme {
 
 	// generates markdown text used to write Theme file
 	generateOutputText() {
+		var docDefinition = {
+			content: [],
+			styles: {
+				reference: {
+					fontSize: 12,
+					bold: true
+				},
+				body: { 
+					fontSize: 11
+				}
+			}
+		}
 
+		for(var i = 0; i < this.quotes.length; i++) {
+			var quoteOutput = this.quotes[i].generateOutputText()
+			docDefinition.content = docDefinition.content.concat(quoteOutput)
+		}
+
+		return docDefinition
 	}
 }
 
@@ -202,7 +257,7 @@ class ThemeArray {
 
 	// automatically adds theme if needed
 	addQuote(quote) {
-		var index = this.indexOfTheme(abbreviation)
+		var index = this.indexOfTheme(quote.abbreviation)
 
 		if(index === -1) {
 			// theme doesn't currently exist
@@ -220,6 +275,38 @@ class ThemeArray {
 		for(var i = 0; i < this.array.length; i++) {
 			this.array[i].sortQuotes()
 		}
+	}
+
+	sortThemeArray() {
+		// see MDN documentation on array.sort
+		this.array.sort(function(a, b) {
+			var aBibIndex = bibleBooks.indexOfAbbrevation(a.abbreviation)
+			var bBibIndex = bibleBooks.indexOfAbbrevation(b.abbreviation)
+
+			if(aBibIndex === -1) { // a is a topic
+				return 1
+			}
+			else if(bBibIndex === -1) { // b is a topic and a is not 
+				return -1
+			} 
+			else if(aBibIndex <= bBibIndex){
+				return -1
+			} 
+			else {
+				return 1
+			}
+		})
+	}
+
+	generateOutputText() {
+		var results = []
+
+		for(var i = 0; i < this.array.length; i++) {
+			var themeOutput = this.array[i].generateOutputText()
+			results.push(themeOutput)
+		}
+
+		return results
 	}
 }
 
@@ -240,7 +327,54 @@ class Quote {
 
 	// generates markdown text used to write Quote to file
 	generateOutputText() {
+		var referenceText = this.getReferenceText()
+		if(this.findAuthor() !== undefined) {
+			referenceText = referenceText + " (" + this.findAuthor() + ")"
+		}
+		
+		var bodyText = this.content + "\n\n"
 
+		var reference = {
+			text: referenceText,
+			style: "reference"
+		}
+
+		var body = {
+			text: bodyText,
+			style: "body"
+		}
+
+		return [reference, body]
+	}
+
+	findAuthor() {
+		var author = undefined
+		var authorIndex = -1
+
+		for(var i = 0; i < anf.fathers.length; i++) {
+			var index = this.content.indexOf(anf.fathers[i])
+			if(index > authorIndex) {
+				authorIndex = index
+				author = anf.fathers[i]
+			}
+		}
+
+		return author
+	}
+
+	getReferenceText() {
+		var referenceText = ""
+		
+		if(this.chapter === null || this.verseText === null) {
+			// quote is regarding a topic (e.g. "Nicene Creed")
+			referenceText = this.name
+		}
+		else {
+			// quote is regarding a book of the Bible
+			referenceText = this.name + " " + this.chapter + ":" + this.verseText
+		}
+
+		return referenceText
 	}
 }
 
@@ -323,6 +457,15 @@ class BibleBooks {
 		]
 	}
 
+	indexOfAbbrevation(abbr) {
+		for(var i = 0; i < this.books.length; i++) {
+			if(this.books[i].abbreviation === abbr) {
+				return i
+			}
+		}
+		return -1
+	}
+
 	containsAbbreviation(abbr) {
 		for(var i = 0; i < this.books.length; i++) {
 			if(this.books[i].abbreviation === abbr) {
@@ -342,7 +485,68 @@ class BibleBooks {
 	}
 }
 
+class AnteNiceneFathers {
+	constructor() {
+		this.fathers = [
+			"Didache",
+			"Clement of Rome",
+			"Ignatius of Antioch",
+			"Epistle of Barnabas",
+			"2 Clement",
+			"Fragments of Papias",
+			"Quadratus of Athens",
+			"Aristides",
+			"The Shepherd of Hermas",
+			"Polycarp",
+			"The Martyrdom of Polycarp",
+			"Epistle to Diognetus",
+			"Justin Martyr",
+			"Claudius Apollinaris",
+			"Melito of Sardis",
+			"Hegesippus",
+			"Athenagoras of Athens",
+			"Irenaeus of Lyons",
+			"Theophilus of Antioch",
+			"Polycrates of Ephesus",
+			"Clement of Alexandria",
+			"Tertullian",
+			"Minucius Felix",
+			"Serapion of Antioch",
+			"Apollonius",
+			"Caius",
+			"Hippolytus of Rome",
+			"Origen",
+			"Cyprian"
+		]
+	}
+
+	// returns -1 if author a comes before b, 0 if equal, and 1 if b comes before a
+	// if only a does not exist but b does, then return 1.
+	// if only b does not exist but a does, then return -1
+	compare(a, b) {
+		var indexA = this.fathers.indexOf(a)
+		var indexB = this.fathers.indexOf(b)
+
+		if(indexA === -1 && indexB !== -1) {
+			return 1
+		} 
+		else if(indexA !== -1 && indexB === -1) {
+			return -1
+		}
+		else if(indexA < indexB) {
+			return -1
+		} 
+		else if(indexA === indexB) {
+			return 0
+		} 
+		else {
+			return 1
+		}
+	}
+}
+
 const bibleBooks = new BibleBooks()
+const anf = new AnteNiceneFathers()
 
 function handleFileUpload() {
 	var fileReader = new FileReader()
@@ -350,25 +554,61 @@ function handleFileUpload() {
 
 	fileReader.onload = function(file) {
 		var text = file.target.result
-		parse.file(text)
+		var themes = parse.file(text)
+		console.log(themes)
+		var pdfs = []
+
+		// generate pdfs
+		for(var i = 0; i < themes.array.length; i++) {
+			var docDefinition = themes.array[i].generateOutputText()
+			var pdf = pdfMake.createPdf(docDefinition)
+
+			pdfs.push({name: themes.array[i].name, content: Promise.promisifyAll(pdf)})
+		}
+
+		var zip = new JSZip()
+
+		console.log(pdfs[0])
+
+		zipPdfs(0, themes.array.length, zip, pdfs)
+
+		/*// save PDFs... in loop? Dunno how to do this asynchronously
+    	pdfs[0].content.getBuffer(function(buffer) {
+	    	zip.file(pdfs[0].anme, buffer)
+
+	    	zip.generateAsync({type: "blob"}).then(function(blob) {
+	    		saveAs(blob, "hello.zip") // from FileSaver.js
+	    	})
+    	})*/
 
 	}
 
 	var files = document.getElementById("files").files
-
 	for(var i = 0; i < files.length; i++) {
-
 		// calls fileReader.onload() when done
 		fileReader.readAsText(files[i])
 	}
+}
 
-	console.log(files)
+// iterates over async calls
+function zipPdfs(i, max, zip, pdfs) {
+	if(i < max) {
+		pdfs[i].content.getBuffer(function(buffer) {
+			zip.file(pdfs[i].name+".pdf", buffer)
+			zipPdfs(i + 1, max, zip, pdfs)
+		})
+	} else {
+		zip.generateAsync({type: "blob"}).then(function(blob) {
+			saveAs(blob, "study-bible-help.zip")
+		})
+	}
 }
 
 module.exports = {
-	InputFileParser : InputFileParser,
-	Theme           : Theme,
-	ThemeArray      : ThemeArray,
-	bibleBooks      : bibleBooks,
-	Quote           : Quote,
+	InputFileParser   : InputFileParser,
+	Theme             : Theme,
+	ThemeArray        : ThemeArray,
+	bibleBooks        : bibleBooks,
+	AnteNiceneFathers : AnteNiceneFathers,
+	Quote             : Quote,
 }

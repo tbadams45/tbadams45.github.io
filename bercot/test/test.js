@@ -83,7 +83,16 @@ describe("InputFileParser Class", function() {
 
 			expect(john.length).to.equal(1)
 			expect(john[0]).to.deep.equal(
-				new main.Quote("3 Jn", "3 John", 0, 4, "4"))
+				new main.Quote("3 Jn", "3 John", 1, 4, "4"))
+		})
+
+		it("shouldn't confuse John for 1 John, etc", function() {
+			var john = "{1 Jn 2:5, 7, 9}"
+			john = parse.referenceLine(john)
+
+			expect(john.length).to.equal(1)
+			expect(john[0]).to.deep.equal(
+				new main.Quote("1 Jn", "1 John", 2, 5, "5, 7, 9"))
 		})
 	})
 
@@ -106,11 +115,14 @@ describe("InputFileParser Class", function() {
 		it("should populate the quote.content property", function() {
 			var qt = "{1 Tim 1:3-15; 2 Tim 2:4}\nintense quote!"
 			var result = parse.quote(qt)
-			expect(result[0]).to.deep.equal(
-				new main.Quote("1 Tim", "1 Timothy", 1, 3, "3-15"))
 
-			expect(result[1]).to.deep.equal(
-				new main.Quote("2 Tim", "2 Timothy", 2, 4, "4"))
+			var real = new main.Quote("1 Tim", "1 Timothy", 1, 3, "3-15")
+			real.setContent("intense quote!")
+			expect(result[0]).to.deep.equal(real)
+
+			real = new main.Quote("2 Tim", "2 Timothy", 2, 4, "4")
+			real.setContent("intense quote!")
+			expect(result[1]).to.deep.equal(real)
 		})
 
 		it("should return an array", function() {
@@ -146,6 +158,24 @@ describe("InputFileParser Class", function() {
 /*	describe("file()", function() {
 
 	})*/
+})
+
+describe("Quote Class", function() {
+	describe("findAuthor()", function() {
+		var quote = new main.Quote("Eph", "Ephesians", 3, 2, "9, 10-12, 15")
+
+		it("should find an author if only one exists in the quote body", function() {
+			quote.setContent("I'm a quote\nOrigen")
+			var author = quote.findAuthor()
+			expect(author).to.equal("Origen")
+		})
+
+		it("should return the last author if two or more exist in the quote body", function() {
+			quote.setContent("Origen likes Clement of Rome says\nCyprian")
+			var author = quote.findAuthor()
+			expect(author).to.equal("Cyprian")
+		})
+	})
 })
 
 
@@ -202,8 +232,38 @@ describe("Theme Class", function() {
 		})
 		it("should sort by verse if chapters are equal", function() {
 			var theme = new main.Theme("Ex", "Exodus")
-			var quote1 = new main.Quote("Ex", "Exodus", 2, 5, "2-3")
-			var quote2 = new main.Quote("Ex", "Exodus", 2, 2, "5")
+			var quote1 = new main.Quote("Ex", "Exodus", 2, 5, "5")
+			var quote2 = new main.Quote("Ex", "Exodus", 2, 2, "2-3")
+
+			theme.pushQuote(quote1)
+			theme.pushQuote(quote2)
+			theme.sortQuotes()
+
+			expect(theme.quotes[0]).to.deep.equal(quote2)
+			expect(theme.quotes[1]).to.deep.equal(quote1)
+		})
+
+		it("should sort by author in chronological order, if two authors reference the same verse", function() {
+			var theme = new main.Theme("Num", "Numbers")
+			var quote1 = new main.Quote("Num", "Numbers", 3, 9, "9")
+			var quote2 = new main.Quote("Num", "Numbers", 3, 9, "9")
+			quote1.setContent("content from \nIrenaeus of Lyons")
+			quote2.setContent("content from \nClement of Rome")
+
+			theme.pushQuote(quote1)
+			theme.pushQuote(quote2)
+			theme.sortQuotes()
+
+			expect(theme.quotes[0]).to.deep.equal(quote2)
+			expect(theme.quotes[1]).to.deep.equal(quote1)
+		})
+
+		it("should use the last author mentioned in the quote body to sort, not someone that comes beforehand", function() {
+			var theme = new main.Theme("Num", "Numbers")
+			var quote1 = new main.Quote("Num", "Numbers", 3, 9, "9")
+			var quote2 = new main.Quote("Num", "Numbers", 3, 9, "9")
+			quote1.setContent("content from \nIrenaeus of Lyons")
+			quote2.setContent("content referencing Origen, but somehow written by\nClement of Rome")
 
 			theme.pushQuote(quote1)
 			theme.pushQuote(quote2)

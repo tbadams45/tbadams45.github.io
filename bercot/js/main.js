@@ -574,7 +574,7 @@ function handleFileUpload() {
 		}
 
 		var zip = new JSZip()
-		addParagraph("log", "Zipping PDFs...")
+		addParagraph("log", "Zipping PDFs. May take a while...")
 		zipPdfs(0, themes.array.length, zip, pdfs)
 	}
 

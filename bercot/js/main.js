@@ -555,7 +555,6 @@ function handleFileUpload() {
 	fileReader.onload = function(file) {
 		var text = file.target.result
 		var themes = parse.file(text)
-		console.log(themes)
 		var pdfs = []
 
 		// generate pdfs
@@ -567,20 +566,7 @@ function handleFileUpload() {
 		}
 
 		var zip = new JSZip()
-
-		console.log(pdfs[0])
-
 		zipPdfs(0, themes.array.length, zip, pdfs)
-
-		/*// save PDFs... in loop? Dunno how to do this asynchronously
-    	pdfs[0].content.getBuffer(function(buffer) {
-	    	zip.file(pdfs[0].anme, buffer)
-
-	    	zip.generateAsync({type: "blob"}).then(function(blob) {
-	    		saveAs(blob, "hello.zip") // from FileSaver.js
-	    	})
-    	})*/
-
 	}
 
 	var files = document.getElementById("files").files
@@ -597,7 +583,7 @@ function zipPdfs(i, max, zip, pdfs) {
 			zip.file(pdfs[i].name+".pdf", buffer)
 			zipPdfs(i + 1, max, zip, pdfs)
 		})
-	} else {
+	} else { // final one
 		zip.generateAsync({type: "blob"}).then(function(blob) {
 			saveAs(blob, "study-bible-help.zip")
 		})

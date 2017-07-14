@@ -56,6 +56,14 @@ describe("InputFileParser Class", function() {
 			expect(creed2[0]).to.deep.equal(
 			new main.Quote("Nicene Creed", "Nicene Creed", null, null, null))
 		})
+		it("should remove non-numeric stuff to left of colon in multi-chapter books", function() {
+			var qt = "{1 Cor. 11:3}"
+			qt = parse.referenceLine(qt)
+
+			expect(qt.length).to.equal(1)
+			expect(qt[0]).to.deep.equal(
+				new main.Quote("1 Cor", "1 Corinthians", 11, 3, "3"))
+		})
 		it("should handle unexpected spaces in curly braces", function() {
 			var space = "{   Acts 7: 44  ;   Heb   8: 5 ; Heb   9: 23-24; Num 9:15; Num 17:7  }"
 			space = parse.referenceLine(space)

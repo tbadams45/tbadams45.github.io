@@ -123,7 +123,7 @@ class InputFileParser {
 				else {
 					chapterVerse = chapterVerse.split(":")
 			
-					var chapter = Number(chapterVerse[0].trim())
+					var chapter = Number(chapterVerse[0].replace(/\D/g, '').trim())
 					var verseText = chapterVerse[1].trim()
 				
 					// find verseNumber

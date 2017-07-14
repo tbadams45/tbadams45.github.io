@@ -18,6 +18,8 @@ class InputFileParser {
 			if(quotes === undefined) {
 				console.log("I had some trouble understanding this one:\n", sliced[i])
 				console.log("Moving on")
+
+				addParagraph("log", "I had some trouble understanding this reference: " + sliced[i])
 			} 
 			else {
 				for(var j = 0; j < quotes.length; j++) {
@@ -25,9 +27,6 @@ class InputFileParser {
 				}
 			}
 		}
-
-		themes.sortEachTheme()
-		themes.sortThemeArray()
 
 		return themes
 	}
@@ -269,6 +268,10 @@ class ThemeArray {
 			// theme exists
 			this.array[index].pushQuote(quote)
 		}
+	}
+
+	pushThemeArray(pushed) {
+		this.array.push(pushed)
 	}
 
 	sortEachTheme() {
@@ -557,7 +560,12 @@ function handleFileUpload() {
 		var themes = parse.file(text)
 		var pdfs = []
 
+		// sort themes
+		themes.sortEachTheme()
+		themes.sortThemeArray()
+
 		// generate pdfs
+		addParagraph("log", "Generating PDFs...")
 		for(var i = 0; i < themes.array.length; i++) {
 			var docDefinition = themes.array[i].generateOutputText()
 			var pdf = pdfMake.createPdf(docDefinition)
@@ -566,10 +574,12 @@ function handleFileUpload() {
 		}
 
 		var zip = new JSZip()
+		addParagraph("log", "Zipping PDFs...")
 		zipPdfs(0, themes.array.length, zip, pdfs)
 	}
 
 	var files = document.getElementById("files").files
+	addParagraph("log", "Reading file(s)...")
 	for(var i = 0; i < files.length; i++) {
 		// calls fileReader.onload() when done
 		fileReader.readAsText(files[i])
@@ -588,6 +598,20 @@ function zipPdfs(i, max, zip, pdfs) {
 			saveAs(blob, "study-bible-help.zip")
 		})
 	}
+}
+
+function replaceNewLineWithBr(string) {
+	var re = /\n/g
+	var newString = string.replace(re, "<br>")
+
+	return newString 
+}
+
+function addParagraph(id, string) {
+	var para = document.createElement("P")
+	var t = document.createTextNode(string)
+	para.appendChild(t)
+	document.getElementById(id).appendChild(para)
 }
 
 module.exports = {

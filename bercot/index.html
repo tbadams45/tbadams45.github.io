@@ -15,6 +15,40 @@
 
 	<style>
 
+		body {
+			margin: 60px auto;
+			width: 70%;
+			color: #333;
+		}
+
+		a {
+			text-decoration: none;
+			color: #999;
+		}
+		a:hover {
+			text-decoration: underline;
+		}
+
+		h1, h2, h3, h4, h5, h6 {
+			font-family:'Helvetica','Arial','Sans-Serif';
+		}
+		
+		h1 {
+			font-size: 30px;
+		}
+		
+		h2 {
+			font-size: 24px;
+		}
+		
+		h3 {
+			font-size: 22px;
+		}
+
+		p {
+			font-size: 16px;
+		}
+
 	</style>
 
 	<!--[if lt IE 9]>
@@ -23,12 +57,37 @@
 </head>
 
 <body>
+	<h1>Ante-Nicene Fathers Parser</h1>
+	<div id="contact-note">
+		Contact Tim Adams at tbadams45@gmail.com with any questions on usage.
+	</div>
 
-  <p>Upload .txt (text) files, not word files. If you need to, you can go to <a href="https://convertio.co/docx-txt/">this website</a> to convert your word files to .txt.</p> 
-  <input type="file" id="files" name="files" multiple></input>
-  <button onclick="handleFileUpload()">Submit files</button>
-</form>
+	<div id="input area">
+		<h2>File Upload</h2>
+		<p>Upload .txt (text) files, not word files. If you need to, you can go to <a href="https://convertio.co/docx-txt/" target="_blank">this website</a> to convert your word files to .txt.</p> 
+		<!--<input type="file" id="files" name="files" multiple></input>-->
+		<input type="file" id="files" name="files"></input>
+		<button onclick="handleFileUpload()">Upload file</button>
+	</div>
 
+	<div id="notes">
+		<div id="error-notes">
+			<h2>Notes</h2>
+			<p>
+			If the program has some trouble understanding a particular quote, check for the following:
+			</p>
+			
+			<ul>
+				<li>Did you use semicolons (;) to separate the scripture references, instead of colons (:) or commas?</li>
+				<li>Is there a single set of curly braces surrounding the scripture references? (e.g. {1 Cor 14:15} rather than {{1 Cor 14:15}}). There should only be one "{" and one "}" per quote.</li>
+				<li>Is the book abbreviation you're using the correct one? If not, quotes from the same book of the Bible will appear in different PDF files. Take a look at <a href="docs/ECSB-00-Abbreviations-for-Bible-Books.pdf" target="_blank">the approved abbreviations</a> for each book.</li>
+			</ul>
+		</div>
+
+		<div id="log">
+			<h2>Progress</h2>
+		</div>
+	</div>
 </body>
 
 </html>

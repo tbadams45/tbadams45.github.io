@@ -75,14 +75,32 @@
 		<div id="error-notes">
 			<h2>Notes</h2>
 			<p>
-			If the program has some trouble understanding a particular quote, check for the following:
+				If the program <b>doesn't seem to be generating any useful output</b>, the <b>first thing to check is your use of curly braces</b> ("{" and "}"). There should only be one "{" and "}" per quote, and they should only be used to surround the scripture references. For example, here are some <b>correct</b> usages of curly braces:
+				<ul>
+					<li>{2 Cor 5:14}<br>"This is the actual quote." Origen</li>
+					<li>{Gen 1:1; Jn 1:1; Creation}<br>"This also works."<br>-Clement of Rome</li>
+				</ul>
+
+				Here are some <b>incorrect</b> usages:
+				<ul>
+					<li>{<b>{</b>2 Cor 5:14<b>}</b>}<br>"This fails because you use two curly braces on each side instead of one." Origen</li>
+					<li>{Gen 1:1; Jn 1:1; Creation}<br>"This fails because I put a curly brace in <b>{</b>the middle of<b>}</b> the quote."<br>-Clement of Rome</li>
+				</ul>
+			</p>
+
+			<p>
+				If the program <b>generates useful output but has some trouble understanding a particular quote</b>, it'll tell you below under the "progress" header. Check for the following:
 			</p>
 			
 			<ul>
-				<li>Did you use semicolons (;) to separate the scripture references, instead of colons (:) or commas?</li>
-				<li>Is there a single set of curly braces surrounding the scripture references? (e.g. {1 Cor 14:15} rather than {{1 Cor 14:15}}). There should only be one "{" and one "}" per quote.</li>
+				<li>You need to use semicolons (;) to separate the scripture references, instead of colons (:) or commas.</li>
 				<li>Is the book abbreviation you're using the correct one? If not, quotes from the same book of the Bible will appear in different PDF files. Take a look at <a href="docs/ECSB-00-Abbreviations-for-Bible-Books.pdf" target="_blank">the approved abbreviations</a> for each book.</li>
+				<li>Did you include a reference line but didn't include any quote body beneath it? This is especially likely if you don't see an actual quote after the "I had some trouble understanding this reference" body.</li>
 			</ul>
+
+			<p>
+				<b>If you find you have a ".pdf" file</b> in your output, that means in at least one place you had an extra semicolon in your scripture references, e.g. {Rev 5:8; <b>;</b> Jn 12:3}
+			</p>
 		</div>
 
 		<div id="log">

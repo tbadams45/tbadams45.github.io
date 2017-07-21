@@ -7,20 +7,20 @@ var expect = chai.expect //actually call the function;
 describe("InputFileParser Class", function() {
 	var parse = new main.InputFileParser()
 
-	describe("referenceLine() basics", function() {
+	describe("references() basics", function() {
 		it("should be of type arrray", function() {
-			var result = parse.referenceLine("{2 Cor 7:1; Lk 11:39; Mt 15:16-20; Mt 5:8}")
+			var result = parse.references("{2 Cor 7:1; Lk 11:39; Mt 15:16-20; Mt 5:8}")
 			expect(result).to.be.array()
 		})
 		it("should handle hyphens", function() {
-			var result = parse.referenceLine("{2 Cor 7:1; Lk 11:39; Mt 15:16-20; Mt 5:8}")
+			var result = parse.references("{2 Cor 7:1; Lk 11:39; Mt 15:16-20; Mt 5:8}")
 			expect(result[2].chapter).to.equal(15)
 			expect(result[2].verseNumber).to.equal(16)
 			expect(result[2].verseText).to.equal("16-20")
 		})
 		it("should handle commas in verse", function() {
 			var commas = "{Rom 4:3, 9, 22, 23; Gen 15:6; Gal 3:6; Jas 2:23}"
-			commas = parse.referenceLine(commas)
+			commas = parse.references(commas)
 
 			expect(commas.length).to.equal(4)
 			expect(commas[0]).to.deep.equal(
@@ -28,7 +28,7 @@ describe("InputFileParser Class", function() {
 		})
 		it("should handle commas AND hyphens in same list", function() {
 			var both = "{Gen 18:2, 23-33; Gen 19:1}"
-			both = parse.referenceLine(both)
+			both = parse.references(both)
 
 			expect(both.length).to.equal(2)
 			expect(both[0]).to.deep.equal(
@@ -36,7 +36,7 @@ describe("InputFileParser Class", function() {
 		})
 		it("should remove junk outside of curly braces", function() {
 			var king = " hi }{2 Kings 17:4}}}{ ???"
-			king = parse.referenceLine(king)
+			king = parse.references(king)
 
 			expect(king.length).to.equal(1)
 			expect(king[0]).to.deep.equal(
@@ -44,13 +44,13 @@ describe("InputFileParser Class", function() {
 		})
 		it("should handle topics", function() {
 			var creed1 = "{Apostles Creed}"
-			creed1 = parse.referenceLine(creed1)
+			creed1 = parse.references(creed1)
 
 			expect(creed1[0]).to.deep.equal(
 				new main.Quote("Apostles Creed", "Apostles Creed", null, null, null))
 
 			var creed2 = "{Nicene Creed; 1 Tim 6:16; Ps 45:6; Heb 1:8}"
-			creed2 = parse.referenceLine(creed2)
+			creed2 = parse.references(creed2)
 
 
 			expect(creed2[0]).to.deep.equal(
@@ -58,7 +58,7 @@ describe("InputFileParser Class", function() {
 		})
 		it("should remove non-numeric stuff to left of colon in multi-chapter books", function() {
 			var qt = "{1 Cor. 11:3}"
-			qt = parse.referenceLine(qt)
+			qt = parse.references(qt)
 
 			expect(qt.length).to.equal(1)
 			expect(qt[0]).to.deep.equal(
@@ -66,7 +66,7 @@ describe("InputFileParser Class", function() {
 		})
 		it("should handle unexpected spaces in curly braces", function() {
 			var space = "{   Acts 7: 44  ;   Heb   8: 5 ; Heb   9: 23-24; Num 9:15; Num 17:7  }"
-			space = parse.referenceLine(space)
+			space = parse.references(space)
 
 			expect(space.length).to.equal(5)
 			expect(space[0]).to.deep.equal(
@@ -87,7 +87,7 @@ describe("InputFileParser Class", function() {
 		})
 		it("should handle one chapter books", function() {
 			var john = "{3 Jn 4}"
-			john = parse.referenceLine(john)
+			john = parse.references(john)
 
 			expect(john.length).to.equal(1)
 			expect(john[0]).to.deep.equal(
@@ -96,7 +96,7 @@ describe("InputFileParser Class", function() {
 
 		it("shouldn't confuse John for 1 John, etc", function() {
 			var john = "{1 Jn 2:5, 7, 9}"
-			john = parse.referenceLine(john)
+			john = parse.references(john)
 
 			expect(john.length).to.equal(1)
 			expect(john[0]).to.deep.equal(
@@ -104,16 +104,16 @@ describe("InputFileParser Class", function() {
 		})
 	})
 
-	describe("referenceLine() error handling", function() {
+	describe("references() error handling", function() {
 		it("should return undefined when two colons are in the same reference", function() {
 			var mismatch = "{Rom 9:28: Rom 13:10; Isa 10:22-23}"
-			mismatch = parse.referenceLine(mismatch)
+			mismatch = parse.references(mismatch)
 
 			expect(mismatch).to.equal(undefined)
 		})
 		it("should return undefined when curly braces are in our curly braces", function() {
 			var king = "{{2 Kings 17:4}"
-			king = parse.referenceLine(king)
+			king = parse.references(king)
 
 			expect(king).to.equal(undefined)
 		})
@@ -156,7 +156,7 @@ describe("InputFileParser Class", function() {
 			var result2 = parse.quote(qt2)
 			expect(result2).to.equal(undefined)
 		})
-		it("should return undefined if referenceLine returns undefined", function() {
+		it("should return undefined if references returns undefined", function() {
 			var bad = "{2 Cor 7:4: Rom 15:3}"
 			var result = parse.quote(bad)
 			expect(result).to.equal(undefined)
@@ -176,6 +176,12 @@ describe("Quote Class", function() {
 			quote.setContent("I'm a quote\nOrigen")
 			var author = quote.findAuthor()
 			expect(author).to.equal("Origen")
+		})
+
+		it("should work for Irenaeus", function() {
+			quote.setContent("...to bring man face to face with God. location 1059\nIrenaeus Proof of the Apostolic Preaching.")
+			var author = quote.findAuthor()
+			expect(author).to.equal("Irenaeus")
 		})
 
 		it("should return the last author if two or more exist in the quote body", function() {

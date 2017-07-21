@@ -11,7 +11,16 @@ class InputFileParser {
 		if(fileContents[0] === "\n") {
 			fileContents = fileContents.substring(1) // get rid of first 
 		}
-		var sliced = fileContents.trim().split("\n\n")
+		//var sliced = fileContents.trim().split(/\r?\n\r?\n/)
+		var sliced = fileContents.trim().split("{")
+		console.log(sliced)
+		if(sliced[0] === "") {
+			sliced.shift()
+		}
+		for(var i = 0; i < sliced.length; i++) {
+			sliced[i] = "{" + sliced[i]
+		}
+		console.log(sliced)
 
 		for(var i = 0; i < sliced.length; i++) {
 			var quotes = this.quote(sliced[i].trim())
@@ -40,10 +49,13 @@ class InputFileParser {
 		// proxy for determining if there wasn't a proper line break 
 		// between two quotes
 		if(quoteContent.includes("{") || quoteContent.includes("}")) {
+			console.log("quote content can't have { or }")
+			console.log(quoteContent.includes("{Beard}"))
+			console.log("quoteContent", quoteContent)
 			return undefined
 		}
 
-		var parsedQuotes = this.referenceLine(references)
+		var parsedQuotes = this.references(references)
 		if(parsedQuotes === undefined) {
 			return undefined
 		}
@@ -57,7 +69,7 @@ class InputFileParser {
 
 	// the line that holds the references.
 	// e.g. "{Rom 9:28: Rom 13:10; Isa 10:22-23}"
-	referenceLine(str) {
+	references(str) {
 		var references = []
 
 
@@ -69,6 +81,7 @@ class InputFileParser {
 
 		if(str.includes("{") || str.includes("}")) { 
 			// curly braces may still exist in curly braces
+			console.log("can't have more than one { or } in the references")
 			return undefined
 		}
 
@@ -118,6 +131,7 @@ class InputFileParser {
 				} 
 				else if (numColons > 1) {
 					// invalid; we don't know how to deal with two or more colons
+					console.log("don't know how to deal with two or more colons in a reference")
 					return undefined
 				} 
 				else {
@@ -333,6 +347,7 @@ class Quote {
 		var referenceText = this.getReferenceText()
 		if(this.findAuthor() !== undefined) {
 			referenceText = referenceText + " (" + this.findAuthor() + ")"
+			console.log(referenceText)
 		}
 		
 		var bodyText = this.content + "\n\n"
@@ -491,35 +506,34 @@ class BibleBooks {
 class AnteNiceneFathers {
 	constructor() {
 		this.fathers = [
+			"Philo",
+			"Josephus",
 			"Didache",
 			"Clement of Rome",
-			"Ignatius of Antioch",
-			"Epistle of Barnabas",
-			"2 Clement",
-			"Fragments of Papias",
-			"Quadratus of Athens",
+			"Ignatius",
+			"Barnabas",
+			"Second Clement",
+			"Papias",
 			"Aristides",
-			"The Shepherd of Hermas",
+			"Diognetus",
 			"Polycarp",
-			"The Martyrdom of Polycarp",
-			"Epistle to Diognetus",
+			"Martyrdom of Polycarp",
+			"Hermas",
 			"Justin Martyr",
-			"Claudius Apollinaris",
-			"Melito of Sardis",
-			"Hegesippus",
-			"Athenagoras of Athens",
-			"Irenaeus of Lyons",
-			"Theophilus of Antioch",
-			"Polycrates of Ephesus",
+			"Athenagoras",
+			"Irenaeus",
+			"Theophilus",
 			"Clement of Alexandria",
 			"Tertullian",
 			"Minucius Felix",
-			"Serapion of Antioch",
-			"Apollonius",
 			"Caius",
-			"Hippolytus of Rome",
+			"Hippolytus",
 			"Origen",
-			"Cyprian"
+			"Cyprian",
+			"Methodius",
+			"Lactantius",
+			"Eusebius",
+			"John Chrysostom"
 		]
 	}
 

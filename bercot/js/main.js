@@ -221,10 +221,20 @@ class Theme {
 				}
 				else {
 					// chapters AND verses are equal.
-					// sort by author
-					var authorA = a.findAuthor()
-					var authorB = b.findAuthor()
-					return anf.compare(authorA, authorB)
+					// sort by length of verse string (we want 7:6 to come ahead of 7:6-10)
+					if(a.verseText.length < b.verseText.length) {
+						return -1
+					}
+					else if(a.verseText.length > b.verseText.length) {
+						return 1
+					}
+					else {
+						// sort by author
+						var authorA = a.findAuthor()
+						var authorB = b.findAuthor()
+						return anf.compare(authorA, authorB)
+					}
+
 				}
 			}
 		})
@@ -417,7 +427,7 @@ class BibleBooks {
 			{abbreviation: "Neh", name: "Nehemiah"},
 			{abbreviation: "Tob", name: "Tobit"},
 			{abbreviation: "Jdt", name: "Judith"},
-			{abbreviation: "Esth 1", name: "Esther"},
+			{abbreviation: "Esth", name: "Esther"},
 			{abbreviation: "1 Macc", name: "Maccabees"},
 			{abbreviation: "2 Macc", name: "2 Maccabees"},
 			{abbreviation: "Job", name: "Job"},
@@ -449,7 +459,7 @@ class BibleBooks {
 			{abbreviation: "Mk", name: "Mark"},
 			{abbreviation: "Lk", name: "Luke"},
 			{abbreviation: "Jn", name: "John"},
-			{abbreviation: "Acts", name: "Acts of the Apostles"},
+			{abbreviation: "Acts", name: "Acts"},
 			{abbreviation: "Rom", name: "Romans"},
 			{abbreviation: "1 Cor", name: "1 Corinthians"},
 			{abbreviation: "2 Cor", name: "2 Corinthians"},

@@ -70,7 +70,7 @@ describe("InputFileParser Class", function() {
 
 			expect(space.length).to.equal(5)
 			expect(space[0]).to.deep.equal(
-				new main.Quote("Acts", "Acts of the Apostles", 7, 44, "44"))
+				new main.Quote("Acts", "Acts", 7, 44, "44"))
 
 			expect(space[1]).to.deep.equal(
 				new main.Quote("Heb", "Hebrews", 8, 5, "5"))

@@ -9,7 +9,7 @@ description:         A place to host my thoughts, musings, ramblings, etc.
 url:                 http://tbadams.com
 baseurl:             ''
 paginate:            5
-gems:                [jekyll-paginate, jekyll-seo-tag]
+plugins:             [jekyll-paginate, jekyll-seo-tag]
 
 # About/contact
 author:

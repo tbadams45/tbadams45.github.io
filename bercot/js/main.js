@@ -49,9 +49,9 @@ class InputFileParser {
 		// proxy for determining if there wasn't a proper line break 
 		// between two quotes
 		if(quoteContent.includes("{") || quoteContent.includes("}")) {
-			console.log("quote content can't have { or }")
-			console.log(quoteContent.includes("{Beard}"))
-			console.log("quoteContent", quoteContent)
+			//console.log("quote content can't have { or }")
+			//console.log(quoteContent.includes("{Beard}"))
+			//console.log("quoteContent", quoteContent)
 			return undefined
 		}
 
@@ -81,7 +81,7 @@ class InputFileParser {
 
 		if(str.includes("{") || str.includes("}")) { 
 			// curly braces may still exist in curly braces
-			console.log("can't have more than one { or } in the references")
+			//console.log("can't have more than one { or } in the references")
 			return undefined
 		}
 
@@ -131,7 +131,7 @@ class InputFileParser {
 				} 
 				else if (numColons > 1) {
 					// invalid; we don't know how to deal with two or more colons
-					console.log("don't know how to deal with two or more colons in a reference")
+					//console.log("don't know how to deal with two or more colons in a reference")
 					return undefined
 				} 
 				else {

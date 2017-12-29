@@ -141,6 +141,18 @@ describe("InputFileParser Class", function() {
 		})
 	})
 
+	describe("verse() basics", function() {
+		it("returns a number if only a number is given", function() {
+			var verse = "4"
+			var result = parse.verse(verse)
+			var expected = {
+				verseNumber : 4,
+				verseText : "4"
+			}
+			expect(result).to.deep.equal(expected)
+		})
+	})
+
 	// quote will handle the entire quote, including references
 	// return a Quote with content set.
 	// or tells the user that it doesn't work (if referencelist is undefined) for some reason and moves on

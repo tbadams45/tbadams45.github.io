@@ -119,6 +119,41 @@ describe("InputFileParser Class", function() {
 		})
 	})
 
+	describe("reference() basics", function() {
+		it("should use the name of the topic if it doesn't match a book abbreviation", function() {
+			var qt = "Beard"
+			var result = parse.reference(qt)
+			real = new main.Quote("Beard", "Beard", null, null, null, null)
+			expect(result).to.deep.equal(real)
+		})
+
+		it("should be able to handle multiword topics", function() {
+			var qt = "Testing for goodness"
+			var result	= parse.reference(qt)
+			real = new main.Quote("Testing for goodness", "Testing for goodness", null, null, null, null)
+			expect(result).to.deep.equal(real)
+		})
+
+		it("should be able to handle topics which include book abbreviations but aren't", function() {
+			var qt = "Roman government"
+			var result	= parse.reference(qt)
+			real = new main.Quote("Roman government", "Roman government", null, null, null, null)
+			expect(result).to.deep.equal(real)
+
+			var qt = "Exposing sin"
+			var result	= parse.reference(qt)
+			real = new main.Quote("Exposing sin", "Exposing sin", null, null, null, null)
+			expect(result).to.deep.equal(real)
+		})
+
+		it("should ignore 'LXX' or '[LXX]' in the reference", function() {
+			var ref = "Gen 2:4[LXX]"
+			var result = parse.reference(ref)
+			real = new main.Quote("Gen", "Genesis", 2, 4, 4, "4")
+			expect(result).to.deep.equal(real)
+		})
+	})
+
 	describe("quote() basics", function() {
 		it("should populate the quote.content property", function() {
 			var qt = "{1 Tim 1:3; 2 Tim 2:4}\nintense quote!"

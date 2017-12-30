@@ -1,5 +1,6 @@
 // Handles all parsing of the input file, builds Theme objects that contain
 // quotes for their particular Theme.
+// TEST
 class InputFileParser {
 	constructor() {
 		this.themes = [];
@@ -9,27 +10,27 @@ class InputFileParser {
 		var themes = new ThemeArray()
 		// parse into individual entries
 		if(fileContents[0] === "\n") {
-			fileContents = fileContents.substring(1) // get rid of first 
+			fileContents = fileContents.substring(1) // get rid of first
 		}
 		//var sliced = fileContents.trim().split(/\r?\n\r?\n/)
 		var sliced = fileContents.trim().split("{")
-		console.log(sliced)
+		//console.log(sliced)
 		if(sliced[0] === "") {
 			sliced.shift()
 		}
 		for(var i = 0; i < sliced.length; i++) {
 			sliced[i] = "{" + sliced[i]
 		}
-		console.log(sliced)
+		//console.log(sliced)
 
 		for(var i = 0; i < sliced.length; i++) {
 			var quotes = this.quote(sliced[i].trim())
 			if(quotes === undefined) {
-				console.log("I had some trouble understanding this one:\n", sliced[i])
-				console.log("Moving on")
+				//console.log("I had some trouble understanding this one:\n", sliced[i])
+				//console.log("Moving on")
 
 				addParagraph("log", "I had some trouble understanding this reference: " + sliced[i])
-			} 
+			}
 			else {
 				for(var j = 0; j < quotes.length; j++) {
 					themes.addQuote(quotes[j])
@@ -46,7 +47,7 @@ class InputFileParser {
 		var references = quote.substring(0, firstLineBreak)
 		var quoteContent = quote.substring(firstLineBreak).trim()
 
-		// proxy for determining if there wasn't a proper line break 
+		// proxy for determining if there wasn't a proper line break
 		// between two quotes
 		if(quoteContent.includes("{") || quoteContent.includes("}")) {
 			//console.log("quote content can't have { or }")
@@ -72,14 +73,18 @@ class InputFileParser {
 	references(str) {
 		var references = []
 
+		// Check to see there's at least one of each type of curly brace
+		if(!(str.includes("{") && str.includes("}"))) {
+			return undefined
+		}
 
-		// Get content inside of curly braces. 
+		// Get content inside of curly braces.
 		// See https://stackoverflow.com/questions/5520880/getting-content-between-curly-braces-in-javascript-regex
 		// for regex
 		var match = /{(.*?)}/.exec(str)
 		str = match[1] // actual result, without curly braces
 
-		if(str.includes("{") || str.includes("}")) { 
+		if(str.includes("{") || str.includes("}")) {
 			// curly braces may still exist in curly braces
 			//console.log("can't have more than one { or } in the references")
 			return undefined
@@ -102,21 +107,35 @@ class InputFileParser {
 
 	// Where a "reference" is, e.g. "1 Cor 14:5" or "Nicene Creed"
 	reference(ref) {
+		// get rid of "LXX", "[LXX]", "MT", or "[MT]" in the reference, if they exist.
+		ref = ref.replace(/(\[LXX\]|LXX|MT|\[MT\])/, "")
 		ref = ref.trim()
 
 		for(var i = 0; i < bibleBooks.books.length; i++) {
 			var abbr = bibleBooks.books[i].abbreviation
 
-			if(ref.indexOf(abbr) === 0) {
+			if(ref.indexOf(abbr) === 0) { // abbreviation begins reference
+
+				// check to make sure if the abbreviation is actually
+				// part of a word by checking to see if the next character is a letter.
+				// crude, but will work in most situations...
+				if(!(ref[abbr.length].match(/^[a-zA-Z]*$/) === null)) {
+					return new Quote(ref.trim(), ref.trim(), null, null, null, null)
+				}
+
 				var len = bibleBooks.books[i].abbreviation.length
 
 				var chapterVerse = ref.substring(len).trim() // cut off abbreviation
 
 				var numColons = chapterVerse.split(":").length - 1
-				
+
 				if(numColons === 0) {
 					// no colons. this means we're dealing with a one chapter book
 					var vInfo = this.verse(chapterVerse)
+					if(vInfo === undefined) {
+						// something broke at the verse level
+						return undefined
+					}
 					return new Quote(
 						bibleBooks.books[i].abbreviation,
 						bibleBooks.books[i].name,
@@ -124,26 +143,30 @@ class InputFileParser {
 						vInfo.verseNumber,
 						vInfo.verseEndNumber,
 						vInfo.verseText)
-				} 
+				}
 				else if (numColons > 1) {
 					// invalid; we don't know how to deal with two or more colons
 					//console.log("don't know how to deal with two or more colons in a reference")
 					return undefined
-				} 
+				}
 				else {
 					chapterVerse = chapterVerse.split(":")
-			
+
 					var chapter = Number(chapterVerse[0].replace(/\D/g, '').trim())
 					var verseText = chapterVerse[1].trim()
-				
+
 					// find verseNumber
 					var vInfo = this.verse(verseText)
+					if(vInfo === undefined) {
+						// something broke at the verse level
+						return undefined
+					}
 
 					return new Quote(
-						bibleBooks.books[i].abbreviation, 
-						bibleBooks.books[i].name, 
-						chapter, 
-						vInfo.verseNumber, 
+						bibleBooks.books[i].abbreviation,
+						bibleBooks.books[i].name,
+						chapter,
+						vInfo.verseNumber,
 						vInfo.verseEndNumber,
 						verseText)
 				}
@@ -162,24 +185,32 @@ class InputFileParser {
 
 		var onComma = verseText.indexOf(",")
 		var onHyphen = verseText.indexOf("-")
-		
+
 		var higher = onComma > onHyphen ? onComma : onHyphen
 		var lower  = onComma < onHyphen ? onComma : onHyphen
 
-		if(higher === -1) { // neither "-"" nor ","" is present 
+		if(higher === -1) { // neither "-"" nor ","" is present
 			verseNumber = Number(verseText.trim())
 		}
 		else if (lower !== -1) { // both exist
 			verseNumber = Number(verseText.substring(0, lower).trim())
-		} 
+		}
 		else { // only one exists
 			verseNumber = Number(verseText.substring(0, higher).trim())
 		}
 
 		// https://stackoverflow.com/questions/6340180/regex-to-get-the-number-from-the-end-of-a-string
-		var verseEndNumber = parseInt(verseText.match(/\d+$/)[0], 10)
-		if(isNaN(verseEndNumber)) { // the end of verseText wasn't a number
-			return undefined
+		try {
+			var verseEndNumber = verseText.match(/\d+$/)
+			if(verseEndNumber === null) {
+				// end of verseText wasn't a number
+				return undefined
+			}
+			verseEndNumber = parseInt(verseEndNumber[0], 10)
+			var verseEndNumber = parseInt(verseText.match(/\d+$/)[0], 10)
+		}
+		catch(e) {
+			console.log(e)
 		}
 
 		return {
@@ -205,7 +236,7 @@ class Theme {
 	// sort quotes array in order of chapter and then verseNumber
 	sortQuotes() {
 		if(!bibleBooks.containsAbbreviation(this.abbreviation)) {
-			// it's a topic, and we can't sort topics on chapters/verses 
+			// it's a topic, and we can't sort topics on chapters/verses
 			// because they don't have any.
 			return
 		}
@@ -258,7 +289,7 @@ class Theme {
 					fontsize: 11,
 					italics: true
 				},
-				body: { 
+				body: {
 					fontSize: 11
 				}
 			}
@@ -322,12 +353,12 @@ class ThemeArray {
 			if(aBibIndex === -1) { // a is a topic
 				return 1
 			}
-			else if(bBibIndex === -1) { // b is a topic and a is not 
+			else if(bBibIndex === -1) { // b is a topic and a is not
 				return -1
-			} 
+			}
 			else if(aBibIndex <= bBibIndex){
 				return -1
-			} 
+			}
 			else {
 				return 1
 			}
@@ -367,9 +398,9 @@ class Quote {
 		var referenceText = this.getReferenceText()
 		if(this.findAuthor() !== undefined) {
 			referenceText = referenceText + " (" + this.findAuthor() + ")"
-			console.log(referenceText)
+			//console.log(referenceText)
 		}
-		
+
 		var bodyText = this.content + "\n\n"
 
 		var verseText = this.getVerseText()
@@ -410,22 +441,28 @@ class Quote {
 
 	getVerseText() {
 		if(!bibleBooks.containsAbbreviation(this.abbreviation)) {
+			// The quote doesn't refer to a scripture, but a topic. So don't include anything.
 			return ""
 		}
-		
-		var text = "" 
-		for(var i = this.verseNumber; i <= this.verseEndNumber; i++) {
-			console.log("Abbreviation: " + this.abbreviation)
-			console.log("Chapter: " + this.chapter)
-			text = text + kjva_bible[this.abbreviation][this.chapter]["verses"][i] + " "
-		}
 
-		return text
+		try {
+			var text = ""
+			for(var i = this.verseNumber; i <= this.verseEndNumber; i++) {
+				//console.log("Abbreviation: " + this.abbreviation)
+				//console.log("Chapter: " + this.chapter)
+				text = text + kjva_bible[this.abbreviation][this.chapter]["verses"][i] + " "
+			}
+
+			return text
+		}
+		catch(e) {
+			return "It seems like this particular book/chapter/verse combination doesn't exist. Maybe there's a mistake?"
+		}
 	}
 
 	getReferenceText() {
 		var referenceText = ""
-		
+
 		if(this.chapter === null || this.verseText === null) {
 			// quote is regarding a topic (e.g. "Nicene Creed")
 			referenceText = this.name
@@ -504,7 +541,7 @@ class BibleBooks {
 			{abbreviation: "2 Thess", name: "2 Thessalonians"},
 			{abbreviation: "1 Tim", name: "1 Timothy"},
 			{abbreviation: "2 Tim", name: "2 Timothy"},
-			{abbreviation: "Tit", name: "Titus"},
+			{abbreviation: "Titus", name: "Titus"},
 			{abbreviation: "Philemon", name: "Philemon"},
 			{abbreviation: "Heb", name: "Hebrews"},
 			{abbreviation: "Jas", name: "James"},
@@ -514,7 +551,10 @@ class BibleBooks {
 			{abbreviation: "2 Jn", name: "2 John"},
 			{abbreviation: "3 Jn", name: "3 John"},
 			{abbreviation: "Jude", name: "Jude"},
-			{abbreviation: "Rev", name: "Revelation"}
+			{abbreviation: "Rev", name: "Revelation"},
+			{abbreviation: "Obad", name: "Obadiah"},
+			{abbreviation: "1 Esd", name: "1 Esdras"},
+			{abbreviation: "2 Esd", name: "2 Esdras"}
 		]
 	}
 
@@ -589,16 +629,16 @@ class AnteNiceneFathers {
 
 		if(indexA === -1 && indexB !== -1) {
 			return 1
-		} 
+		}
 		else if(indexA !== -1 && indexB === -1) {
 			return -1
 		}
 		else if(indexA < indexB) {
 			return -1
-		} 
+		}
 		else if(indexA === indexB) {
 			return 0
-		} 
+		}
 		else {
 			return 1
 		}
@@ -614,7 +654,12 @@ function handleFileUpload() {
 
 	fileReader.onload = function(file) {
 		var text = file.target.result
-		var themes = parse.file(text)
+		try {
+			var themes = parse.file(text)
+		}
+		catch(e) {
+			addParagraph("log", "There was an error while parsing this file... Please send to Tim at tbadams45@gmail.com.")
+		}
 		var pdfs = []
 
 		// sort themes
@@ -623,6 +668,7 @@ function handleFileUpload() {
 
 		// generate pdfs
 		addParagraph("log", "Generating PDFs...")
+		console.log("Generating PDFs...")
 		for(var i = 0; i < themes.array.length; i++) {
 			var docDefinition = themes.array[i].generateOutputText()
 			var pdf = pdfMake.createPdf(docDefinition)
@@ -632,11 +678,13 @@ function handleFileUpload() {
 
 		var zip = new JSZip()
 		addParagraph("log", "Zipping PDFs. May take a while...")
+		console.log("Zipping PDFs. May take a while...")
 		zipPdfs(0, themes.array.length, zip, pdfs)
 	}
 
 	var files = document.getElementById("files").files
 	addParagraph("log", "Reading file(s)...")
+	console.log("Reading file(s)...")
 	for(var i = 0; i < files.length; i++) {
 		// calls fileReader.onload() when done
 		fileReader.readAsText(files[i])
@@ -647,7 +695,8 @@ function handleFileUpload() {
 function zipPdfs(i, max, zip, pdfs) {
 	if(i < max) {
 		pdfs[i].content.getBuffer(function(buffer) {
-			zip.file(pdfs[i].name+".pdf", buffer)
+			name = pdfs[i].name.replace(":", "_") // colons aren't allowed in windows file names.
+			zip.file(name+".pdf", buffer)
 			zipPdfs(i + 1, max, zip, pdfs)
 		})
 	} else { // final one
@@ -661,7 +710,7 @@ function replaceNewLineWithBr(string) {
 	var re = /\n/g
 	var newString = string.replace(re, "<br>")
 
-	return newString 
+	return newString
 }
 
 function addParagraph(id, string) {

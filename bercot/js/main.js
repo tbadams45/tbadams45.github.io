@@ -104,11 +104,6 @@ class InputFileParser {
 	reference(ref) {
 		ref = ref.trim()
 
-		var name = ""
-		var chapter = ""
-		var verseNumber = ""
-		var verseText = ""
-
 		for(var i = 0; i < bibleBooks.books.length; i++) {
 			var abbr = bibleBooks.books[i].abbreviation
 
@@ -127,6 +122,7 @@ class InputFileParser {
 						bibleBooks.books[i].name,
 						1,
 						vInfo.verseNumber,
+						vInfo.verseEndNumber,
 						vInfo.verseText)
 				} 
 				else if (numColons > 1) {
@@ -148,6 +144,7 @@ class InputFileParser {
 						bibleBooks.books[i].name, 
 						chapter, 
 						vInfo.verseNumber, 
+						vInfo.verseEndNumber,
 						verseText)
 				}
 			}
@@ -155,12 +152,13 @@ class InputFileParser {
 
 		// it's not a book, but the name of a topic.
 		// So just create a Quote with that name.
-		return new Quote(ref.trim(), ref.trim(), null, null, null)
+		return new Quote(ref.trim(), ref.trim(), null, null, null, null)
 	}
 
 	// a "verse" might be, for instance "15-16", "3", "3-5, 9-20, 15"
 	verse(verseText) {
 		var verseNumber;
+		var verseEndNumber = 0
 
 		var onComma = verseText.indexOf(",")
 		var onHyphen = verseText.indexOf("-")
@@ -178,8 +176,15 @@ class InputFileParser {
 			verseNumber = Number(verseText.substring(0, higher).trim())
 		}
 
+		// https://stackoverflow.com/questions/6340180/regex-to-get-the-number-from-the-end-of-a-string
+		var verseEndNumber = parseInt(verseText.match(/\d+$/)[0], 10)
+		if(isNaN(verseEndNumber)) { // the end of verseText wasn't a number
+			return undefined
+		}
+
 		return {
 			verseNumber : verseNumber,
+			verseEndNumber : verseEndNumber,
 			verseText : verseText
 		}
 	}
@@ -248,6 +253,10 @@ class Theme {
 				reference: {
 					fontSize: 12,
 					bold: true
+				},
+				verse: {
+					fontsize: 11,
+					italics: true
 				},
 				body: { 
 					fontSize: 11
@@ -339,12 +348,13 @@ class ThemeArray {
 
 
 class Quote {
-	constructor(abbreviation, name, chapter, verseNumber, verseText) {
+	constructor(abbreviation, name, chapter, verseNumber, verseEndNumber, verseText) {
 		this.name = name
 		this.abbreviation = abbreviation
 		this.chapter = chapter
 		this.verseNumber = verseNumber
 		this.verseText = verseText
+		this.verseEndNumber = verseEndNumber
 		this.content = null
 	}
 
@@ -362,9 +372,17 @@ class Quote {
 		
 		var bodyText = this.content + "\n\n"
 
+		var verseText = this.getVerseText()
+		verseText = verseText + "\n\n"
+
 		var reference = {
 			text: referenceText,
 			style: "reference"
+		}
+
+		var verse = {
+			text: verseText,
+			style: "verse"
 		}
 
 		var body = {
@@ -372,7 +390,7 @@ class Quote {
 			style: "body"
 		}
 
-		return [reference, body]
+		return [reference, verse, body]
 	}
 
 	findAuthor() {
@@ -388,6 +406,21 @@ class Quote {
 		}
 
 		return author
+	}
+
+	getVerseText() {
+		if(!bibleBooks.containsAbbreviation(this.abbreviation)) {
+			return ""
+		}
+		
+		var text = "" 
+		for(var i = this.verseNumber; i <= this.verseEndNumber; i++) {
+			console.log("Abbreviation: " + this.abbreviation)
+			console.log("Chapter: " + this.chapter)
+			text = text + kjva_bible[this.abbreviation][this.chapter]["verses"][i] + " "
+		}
+
+		return text
 	}
 
 	getReferenceText() {
@@ -644,5 +677,5 @@ module.exports = {
 	ThemeArray        : ThemeArray,
 	bibleBooks        : bibleBooks,
 	AnteNiceneFathers : AnteNiceneFathers,
-	Quote             : Quote,
+	Quote             : Quote
 }

@@ -24,7 +24,7 @@ describe("InputFileParser Class", function() {
 
 			expect(commas.length).to.equal(4)
 			expect(commas[0]).to.deep.equal(
-				new main.Quote("Rom", "Romans", 4, 3, "3, 9, 22, 23"))
+				new main.Quote("Rom", "Romans", 4, 3, 23, "3, 9, 22, 23"))
 		})
 		it("should handle commas AND hyphens in same list", function() {
 			var both = "{Gen 18:2, 23-33; Gen 19:1}"
@@ -32,7 +32,7 @@ describe("InputFileParser Class", function() {
 
 			expect(both.length).to.equal(2)
 			expect(both[0]).to.deep.equal(
-				new main.Quote("Gen", "Genesis", 18, 2, "2, 23-33"))
+				new main.Quote("Gen", "Genesis", 18, 2, 33, "2, 23-33"))
 		})
 		it("should remove junk outside of curly braces", function() {
 			var king = " hi }{2 Kings 17:4}}}{ ???"
@@ -40,21 +40,21 @@ describe("InputFileParser Class", function() {
 
 			expect(king.length).to.equal(1)
 			expect(king[0]).to.deep.equal(
-				new main.Quote("2 Kings", "2 Kings", 17, 4, "4"))
+				new main.Quote("2 Kings", "2 Kings", 17, 4, 4, "4"))
 		})
 		it("should handle topics", function() {
 			var creed1 = "{Apostles Creed}"
 			creed1 = parse.references(creed1)
 
 			expect(creed1[0]).to.deep.equal(
-				new main.Quote("Apostles Creed", "Apostles Creed", null, null, null))
+				new main.Quote("Apostles Creed", "Apostles Creed", null, null, null, null))
 
 			var creed2 = "{Nicene Creed; 1 Tim 6:16; Ps 45:6; Heb 1:8}"
 			creed2 = parse.references(creed2)
 
 
 			expect(creed2[0]).to.deep.equal(
-			new main.Quote("Nicene Creed", "Nicene Creed", null, null, null))
+			new main.Quote("Nicene Creed", "Nicene Creed", null, null, null, null))
 		})
 		it("should remove non-numeric stuff to left of colon in multi-chapter books", function() {
 			var qt = "{1 Cor. 11:3}"
@@ -62,27 +62,27 @@ describe("InputFileParser Class", function() {
 
 			expect(qt.length).to.equal(1)
 			expect(qt[0]).to.deep.equal(
-				new main.Quote("1 Cor", "1 Corinthians", 11, 3, "3"))
+				new main.Quote("1 Cor", "1 Corinthians", 11, 3, 3, "3"))
 		})
 		it("should handle unexpected spaces in curly braces", function() {
-			var space = "{   Acts 7: 44  ;   Heb   8: 5 ; Heb   9: 23-24; Num 9:15; Num 17:7  }"
+			var space = "{   Acts 7: 44  ;   Heb   8: 5 ; Heb   9: 23; Num 9:15; Num 17:7  }"
 			space = parse.references(space)
 
 			expect(space.length).to.equal(5)
 			expect(space[0]).to.deep.equal(
-				new main.Quote("Acts", "Acts", 7, 44, "44"))
+				new main.Quote("Acts", "Acts", 7, 44, 44, "44"))
 
 			expect(space[1]).to.deep.equal(
-				new main.Quote("Heb", "Hebrews", 8, 5, "5"))
+				new main.Quote("Heb", "Hebrews", 8, 5, 5, "5"))
 
 			expect(space[2]).to.deep.equal(
-				new main.Quote("Heb", "Hebrews", 9, 23, "23-24"))
+				new main.Quote("Heb", "Hebrews", 9, 23, 23, "23"))
 
 			expect(space[3]).to.deep.equal(
-				new main.Quote("Num", "Numbers", 9, 15, "15"))
+				new main.Quote("Num", "Numbers", 9, 15, 15, "15"))
 
 			expect(space[4]).to.deep.equal(
-				new main.Quote("Num", "Numbers", 17, 7, "7"))
+				new main.Quote("Num", "Numbers", 17, 7, 7, "7"))
 
 		})
 		it("should handle one chapter books", function() {
@@ -91,16 +91,16 @@ describe("InputFileParser Class", function() {
 
 			expect(john.length).to.equal(1)
 			expect(john[0]).to.deep.equal(
-				new main.Quote("3 Jn", "3 John", 1, 4, "4"))
+				new main.Quote("3 Jn", "3 John", 1, 4, 4, "4"))
 		})
 
 		it("shouldn't confuse John for 1 John, etc", function() {
-			var john = "{1 Jn 2:5, 7, 9}"
+			var john = "{1 Jn 2:5}"
 			john = parse.references(john)
 
 			expect(john.length).to.equal(1)
 			expect(john[0]).to.deep.equal(
-				new main.Quote("1 Jn", "1 John", 2, 5, "5, 7, 9"))
+				new main.Quote("1 Jn", "1 John", 2, 5, 5, "5"))
 		})
 	})
 
@@ -121,14 +121,14 @@ describe("InputFileParser Class", function() {
 
 	describe("quote() basics", function() {
 		it("should populate the quote.content property", function() {
-			var qt = "{1 Tim 1:3-15; 2 Tim 2:4}\nintense quote!"
+			var qt = "{1 Tim 1:3; 2 Tim 2:4}\nintense quote!"
 			var result = parse.quote(qt)
 
-			var real = new main.Quote("1 Tim", "1 Timothy", 1, 3, "3-15")
+			var real = new main.Quote("1 Tim", "1 Timothy", 1, 3, 3, "3")
 			real.setContent("intense quote!")
 			expect(result[0]).to.deep.equal(real)
 
-			real = new main.Quote("2 Tim", "2 Timothy", 2, 4, "4")
+			real = new main.Quote("2 Tim", "2 Timothy", 2, 4, 4, "4")
 			real.setContent("intense quote!")
 			expect(result[1]).to.deep.equal(real)
 		})
@@ -142,13 +142,50 @@ describe("InputFileParser Class", function() {
 	})
 
 	describe("verse() basics", function() {
-		it("returns a number if only a number is given", function() {
+		it("should return the same number if only a number is given", function() {
 			var verse = "4"
 			var result = parse.verse(verse)
 			var expected = {
 				verseNumber : 4,
+				verseEndNumber : 4,
 				verseText : "4"
 			}
+			expect(result).to.deep.equal(expected)
+		})
+
+		it("should use the number that comes after a hyphen if one is present", function() {
+			var verse = "4-6"
+			var result = parse.verse(verse)
+			var expected = {
+				verseNumber: 4,
+				verseEndNumber : 6,
+				verseText : "4-6"
+			}
+
+			expect(result).to.deep.equal(expected)
+		})
+
+		it("should use the number that comes after a comma if just one is present", function() {
+			var verse = "4, 15"
+			var result = parse.verse(verse)
+			var expected = {
+				verseNumber : 4,
+				verseEndNumber : 15,
+				verseText : "4, 15"
+			}
+
+			expect(result).to.deep.equal(expected)
+		})
+
+		it("should use the last number that occurs if more than one hyphen/comma is present", function() {
+			var verse = "4, 15-17"
+			var result = parse.verse(verse)
+			var expected = {
+				verseNumber : 4,
+				verseEndNumber : 17,
+				verseText : "4, 15-17"
+			}
+
 			expect(result).to.deep.equal(expected)
 		})
 	})
@@ -182,7 +219,7 @@ describe("InputFileParser Class", function() {
 
 describe("Quote Class", function() {
 	describe("findAuthor()", function() {
-		var quote = new main.Quote("Eph", "Ephesians", 3, 2, "9, 10-12, 15")
+		var quote = new main.Quote("Eph", "Ephesians", 3, 9, 15, "9, 10-12, 15")
 
 		it("should find an author if only one exists in the quote body", function() {
 			quote.setContent("I'm a quote\nOrigen")
@@ -208,7 +245,7 @@ describe("Quote Class", function() {
 describe("Theme Class", function() {
 	describe("pushQuote()", function() {
 		var theme = new main.Theme("2 Cor", "2 Corinthians")
-		var quote = new main.Quote("2 Cor", "2 Corinthians", 1, 13, "13-16")
+		var quote = new main.Quote("2 Cor", "2 Corinthians", 1, 13, 16, "13-16")
 		quote.setContent("this is example content\non two lines")
 		theme.pushQuote(quote)
 
@@ -224,9 +261,9 @@ describe("Theme Class", function() {
 		it("should leave topic themes unchanged", function () {
 			var theme = new main.Theme("Nicene Creed", "Nicene Creed")
 
-			var quote1 = new main.Quote("Nicene Creed", "Nicene Creed", null, null, null)
+			var quote1 = new main.Quote("Nicene Creed", "Nicene Creed", null, null, null, null)
 			quote1.setContent("Content for quote 1")
-			var quote2 = new main.Quote("Nicene Creed", "Nicene Creed", null, null, null)
+			var quote2 = new main.Quote("Nicene Creed", "Nicene Creed", null, null, null, null)
 			quote2.setContent("Content for quote 2")
 
 			theme.pushQuote(quote1)
@@ -246,8 +283,8 @@ describe("Theme Class", function() {
 		})
 		it("should sort by chapter first", function() {
 			var theme = new main.Theme("Gen", "Genesis")
-			var quote1 = new main.Quote("Gen", "Genesis", 4, 2, "2-3")
-			var quote2 = new main.Quote("Gen", "Genesis", 2, 5, "5")
+			var quote1 = new main.Quote("Gen", "Genesis", 4, 2, 3, "2-3")
+			var quote2 = new main.Quote("Gen", "Genesis", 2, 5, 5, "5")
 
 			theme.pushQuote(quote1)
 			theme.pushQuote(quote2)
@@ -258,8 +295,8 @@ describe("Theme Class", function() {
 		})
 		it("should sort by verse if chapters are equal", function() {
 			var theme = new main.Theme("Ex", "Exodus")
-			var quote1 = new main.Quote("Ex", "Exodus", 2, 5, "5")
-			var quote2 = new main.Quote("Ex", "Exodus", 2, 2, "2-3")
+			var quote1 = new main.Quote("Ex", "Exodus", 2, 5, 5, "5")
+			var quote2 = new main.Quote("Ex", "Exodus", 2, 2, 3, "2-3")
 
 			theme.pushQuote(quote1)
 			theme.pushQuote(quote2)
@@ -271,8 +308,8 @@ describe("Theme Class", function() {
 
 		it("should sort by author in chronological order, if two authors reference the same verse", function() {
 			var theme = new main.Theme("Num", "Numbers")
-			var quote1 = new main.Quote("Num", "Numbers", 3, 9, "9")
-			var quote2 = new main.Quote("Num", "Numbers", 3, 9, "9")
+			var quote1 = new main.Quote("Num", "Numbers", 3, 9, 9, "9")
+			var quote2 = new main.Quote("Num", "Numbers", 3, 9, 9, "9")
 			quote1.setContent("content from \nIrenaeus of Lyons")
 			quote2.setContent("content from \nClement of Rome")
 
@@ -286,8 +323,8 @@ describe("Theme Class", function() {
 
 		it("should use the last author mentioned in the quote body to sort, not someone that comes beforehand", function() {
 			var theme = new main.Theme("Num", "Numbers")
-			var quote1 = new main.Quote("Num", "Numbers", 3, 9, "9")
-			var quote2 = new main.Quote("Num", "Numbers", 3, 9, "9")
+			var quote1 = new main.Quote("Num", "Numbers", 3, 9, 9, "9")
+			var quote2 = new main.Quote("Num", "Numbers", 3, 9, 9, "9")
 			quote1.setContent("content from \nIrenaeus of Lyons")
 			quote2.setContent("content referencing Origen, but somehow written by\nClement of Rome")
 

@@ -1,0 +1,35 @@
+SLOW. Give it 5-10 minutes.
+
+Underneath "Matt 13:23"... not the correct format.
+  Mt 25:14-28
+  Rom.2:6
+  Rev.22:12
+  Mt 20:23 (ref.)
+
+{Millennium; Isaiah 11:1; 1 Enoch 10:19-20; 2 Baruch 29:5;
+  don't have these references in there (1 Enoch, 2 Baruch).
+    Have "Bar" for Baruch
+
+
+Can make the font bigger.
+
+---
+
+Can use [LXX] and LXX. But drop "x"
+  {Ex 12:35-36; Mt 5:40-42 x}
+
+
+
+Can't handle Ezek 8:12-9:6 (reference goes beyond the chapter)
+
+{Prophets, Christian} (above the other references)
+  e.g.
+    {Prophets, Christian}
+    {Mt 10:5-12}
+
+Keep references on one line {Acts 23:12-35; 2 Cor 11:26; Acts 9:23; Acts 13:45; Acts 13:50; Acts 14:5;
+Acts 17:5; Acts 17:13; Acts 18:12; Acts 20:3; Acts 20:19}
+
+Most problems are [ instead of {, : instead of ;, "," instead of ;
+
+If you don't use the correct abbreviation, it shows up as its own PDF. (e.g. Titus 1:4). I just changed abbreviation of "Titus" to "Titus", as "Tit" was never used, and "Titus" was used frequently.

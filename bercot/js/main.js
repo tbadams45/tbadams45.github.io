@@ -542,7 +542,7 @@ class BibleBooks {
 			{abbreviation: "1 Tim", name: "1 Timothy"},
 			{abbreviation: "2 Tim", name: "2 Timothy"},
 			{abbreviation: "Titus", name: "Titus"},
-			{abbreviation: "Philemon", name: "Philemon"},
+			{abbreviation: "Phlmn", name: "Philemon"},
 			{abbreviation: "Heb", name: "Hebrews"},
 			{abbreviation: "Jas", name: "James"},
 			{abbreviation: "1 Pet", name: "1 Peter"},

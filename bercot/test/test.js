@@ -92,6 +92,13 @@ describe("InputFileParser Class", function() {
 			expect(john.length).to.equal(1)
 			expect(john[0]).to.deep.equal(
 				new main.Quote("3 Jn", "3 John", 1, 4, 4, "4"))
+
+			var phil = "{Phlmn 4}"
+			phil = parse.references(phil)
+
+			expect(phil.length).to.equal(1)
+			expect(phil[0]).to.deep.equal(
+				new main.Quote("Phlmn", "Philemon", 1, 4, 4, "4"))
 		})
 
 		it("shouldn't confuse John for 1 John, etc", function() {

@@ -20,10 +20,12 @@ Read whatever chapters you're going to read, and look first to understand the fa
 - Do I understand all of the words? 
 - Who is speaking?
 - Who are they speaking to? 
+- What are the people/places they're talking about? 
 - What is the main point in their argument? 
-- If it's more narrative focused, then what are the places they're talking? 
 
 If names etc. are unfamiliar, write them down to find out what/who they are later. If there are words or phrases that you don't feel like you really know what they're saying, write those down. The goal of this section is to be able to explain the passage you're reading to someone else, so you know you've got what's there. You're not applying or interpreting anything here - you're just trying to understand.
+
+Why would it be helpful to know these basic details? In John 4:43-54, an official comes from Capernaum to Cana to ask Jesus to come with him and heal his son. Jesus says "Go, your son will live." So the man "takes Jesus at his word and departed." back to Capernaum. It's useful to know that Capernaum and Cana are 17 miles away from each other, roughly a day's journey walking. So when the official "took Jesus at his word" and went back home, he was walking back for an entire day, trusting that what Jesus said would happen had actually happened. This is *far* greater faith than if the distance were only a mile or so, which you might implicitly assume if you didn't know where these towns were.
 
 
 ## Going Deeper

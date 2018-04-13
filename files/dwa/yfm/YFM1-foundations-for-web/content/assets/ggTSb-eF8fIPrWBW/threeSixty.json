@@ -1,0 +1,77 @@
+{
+  "version": "3.14.15225.0",
+  "scenes": [
+    {
+      "title": "Introduction"
+    },
+    {
+      "title": "Untitled Scene"
+    }
+  ],
+  "slides": [
+    {
+      "id": "6jX5jv5e60R",
+      "title": "Welcome to the Training",
+      "scene_index": "1.1"
+    },
+    {
+      "id": "6Z64ZsJkm1J",
+      "title": "Managing Risk and Safety",
+      "scene_index": "1.2"
+    },
+    {
+      "id": "5lqlI1jJItR",
+      "title": "Too Much Risk",
+      "scene_index": "1.3"
+    },
+    {
+      "id": "6EFmt0tWvym",
+      "title": "Cautious Travel",
+      "scene_index": "1.4"
+    },
+    {
+      "id": "6K6J6BpLH7E",
+      "title": "Abuse Awareness",
+      "scene_index": "1.5"
+    },
+    {
+      "id": "5VA0xcrpZs6",
+      "title": "Biblical Perspective",
+      "scene_index": "1.6"
+    },
+    {
+      "id": "6nNL5XrbNhk",
+      "title": "Think and Be Wise!",
+      "scene_index": "1.7"
+    },
+    {
+      "id": "5bjeKCE4fLx",
+      "title": "Outline of the Course",
+      "scene_index": "1.8"
+    },
+    {
+      "id": "5uyiWUCqrg2",
+      "title": "Untitled Slide",
+      "scene_index": "2.1"
+    },
+    {
+      "id": "6Kh4i1AClki",
+      "title": "Welcome by Phil",
+      "scene_index": "2.2"
+    },
+    {
+      "id": "6mU9Z5J5xHo",
+      "title": "Untitled Slide",
+      "scene_index": "2.3"
+    }
+  ],
+  "player": {
+    "name": "classic",
+    "width": 740,
+    "height": 611
+  },
+  "stage": {
+    "width": 720,
+    "height": 540
+  }
+}

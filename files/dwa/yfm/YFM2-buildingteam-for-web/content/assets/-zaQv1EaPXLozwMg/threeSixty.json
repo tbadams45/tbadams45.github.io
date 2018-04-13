@@ -1,0 +1,81 @@
+{
+  "version": "3.11.14249.0",
+  "scenes": [
+    {
+      "title": "The Team"
+    },
+    {
+      "title": "Reviewing What You've Learned"
+    }
+  ],
+  "slides": [
+    {
+      "id": "6dADKo8DMvQ",
+      "title": "Your Team: The Body",
+      "scene_index": "1.1"
+    },
+    {
+      "id": "6ZZCeBLHQ0I",
+      "title": "Your Team: The Body",
+      "scene_index": "1.2"
+    },
+    {
+      "id": "5ytbDjucQ9S",
+      "title": "You are Not Alone",
+      "scene_index": "1.3"
+    },
+    {
+      "id": "6T6GunuET3S",
+      "title": "Finding Your Team",
+      "scene_index": "1.4"
+    },
+    {
+      "id": "6IBbGFGy1TY",
+      "title": "Feeling Alone",
+      "scene_index": "1.5"
+    },
+    {
+      "id": "5XsnRMnk7wk",
+      "title": "The Team Mindset",
+      "scene_index": "1.6"
+    },
+    {
+      "id": "6JahecaE4ZL",
+      "title": "Know Your Team",
+      "scene_index": "1.7"
+    },
+    {
+      "id": "66g18feIcmY",
+      "title": "Your Team: The Body",
+      "scene_index": "1.8"
+    },
+    {
+      "id": "6OD2g5NHOLc",
+      "title": "You are all alone in your work with youth and should figure it out by yourself.",
+      "scene_index": "2.1"
+    },
+    {
+      "id": "6gAUDW7aL1a",
+      "title": "Check all that should apply in working with youth.",
+      "scene_index": "2.2"
+    },
+    {
+      "id": "5ZT59oW8q7q",
+      "title": "You ____________ \nknow everything.",
+      "scene_index": "2.3"
+    },
+    {
+      "id": "6XQ2k4mcm3o",
+      "title": "Outline of the Course",
+      "scene_index": "2.4"
+    }
+  ],
+  "player": {
+    "width": 740,
+    "height": 611
+  },
+  "stage": {
+    "width": 720,
+    "height": 540
+  }
+}

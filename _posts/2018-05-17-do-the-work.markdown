@@ -15,8 +15,8 @@ It's easy to waste time planning, prepping, and talking about what you want to a
 
 Sometimes we don't want to get started because we're afraid we won't do it the "right" or "best" way. But in the vast majority of the things we want to accomplish, just getting started and doing the work in whatever way you currently know how is a far more effective path to achieving your goals. Too often, looking for the "right" way turns into becoming overwhelmed with all of the options out there and not doing anything.
 
-So: it's summer time. You've got something in mind that you want to do? 
+So: it's summertime. You've got something in mind that you want to do? 
 
-Good. Now get out there and do the work.
+Good. Now get out there and **do the work**.
 
 (This post was inspired by a [similar one](https://jamesclear.com/required-for-success) by James Clear. I've found his writing helpful, both to provide insight in how to live a more disciplined life, and in giving me some of the motivation I need to get moving.)

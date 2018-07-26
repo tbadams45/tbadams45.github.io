@@ -69,7 +69,8 @@
 		<p>Upload .txt (text) files, not word files. If you need to, you can go to <a href="https://convertio.co/docx-txt/" target="_blank">this website</a> to convert your word files to .txt.</p>
 		<!--<input type="file" id="files" name="files" multiple></input>-->
 		<input type="file" id="files" name="files"></input>
-		<button onclick="handleFileUpload()">Upload file</button>
+		<button onclick="handleFileUpload('PDF')">Generate PDFs</button>
+		<button onclick="handleFileUpload('text')">Generate text files</button>
 	</div>
 
 	<div id="notes">
@@ -77,7 +78,6 @@
 
 		<div id="log">
 			<h2>Progress</h2>
-			<p>Upload your file to begin.</p>
 		</div>
 	</div>
 </body>

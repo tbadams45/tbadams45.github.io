@@ -277,7 +277,7 @@ class Theme {
 	}
 
 	// generates markdown text used to write Theme file
-	generateOutputText() {
+	generatePDFText() {
 		var docDefinition = {
 			content: [],
 			styles: {
@@ -296,7 +296,7 @@ class Theme {
 		}
 
 		for(var i = 0; i < this.quotes.length; i++) {
-			var quoteOutput = this.quotes[i].generateOutputText()
+			var quoteOutput = this.quotes[i].generatePDFText()
 			docDefinition.content = docDefinition.content.concat(quoteOutput)
 		}
 
@@ -365,11 +365,11 @@ class ThemeArray {
 		})
 	}
 
-	generateOutputText() {
+	generatePDFText() {
 		var results = []
 
 		for(var i = 0; i < this.array.length; i++) {
-			var themeOutput = this.array[i].generateOutputText()
+			var themeOutput = this.array[i].generatePDFText()
 			results.push(themeOutput)
 		}
 
@@ -394,7 +394,7 @@ class Quote {
 	}
 
 	// generates markdown text used to write Quote to file
-	generateOutputText() {
+	generatePDFText() {
 		var referenceText = this.getReferenceText()
 		if(this.findAuthor() !== undefined) {
 			referenceText = referenceText + " (" + this.findAuthor() + ")"
@@ -648,7 +648,7 @@ class AnteNiceneFathers {
 const bibleBooks = new BibleBooks()
 const anf = new AnteNiceneFathers()
 
-function handleFileUpload() {
+function handleFileUpload(outputType) {
 	var fileReader = new FileReader()
 	var parse = new InputFileParser()
 
@@ -660,7 +660,7 @@ function handleFileUpload() {
 		catch(e) {
 			addParagraph("log", "There was an error while parsing this file... Please send to Tim at tbadams45@gmail.com.")
 		}
-		var pdfs = []
+		var outputFiles = []
 
 		// sort themes
 		themes.sortEachTheme()
@@ -669,17 +669,37 @@ function handleFileUpload() {
 		// generate pdfs
 		addParagraph("log", "Generating PDFs...")
 		console.log("Generating PDFs...")
-		for(var i = 0; i < themes.array.length; i++) {
-			var docDefinition = themes.array[i].generateOutputText()
-			var pdf = pdfMake.createPdf(docDefinition)
 
-			pdfs.push({name: themes.array[i].name, content: Promise.promisifyAll(pdf)})
+		// Everything has been synchronous up to this point.
+
+		if(outputType === "PDF") {
+			for(var i = 0; i < themes.array.length; i++) {
+				var docDefinition = themes.array[i].generatePDFText()
+				var pdf = pdfMake.createPdf(docDefinition)
+
+				outputFiles.push({name: themes.array[i].name, content: Promise.promisifyAll(pdf)})
+			}
+
+			var zip = new JSZip()
+			addParagraph("log", "Zipping PDFs. May take a while...")
+			console.log("Zipping PDFs. May take a while...")
+			zipPdfs(0, themes.array.length, zip, outputFiles)
 		}
 
-		var zip = new JSZip()
-		addParagraph("log", "Zipping PDFs. May take a while...")
-		console.log("Zipping PDFs. May take a while...")
-		zipPdfs(0, themes.array.length, zip, pdfs)
+		else if(outputType === "text") {
+			for(var i = 0; i < themes.array.length; i++) {
+				var docDefinition = themes.array[i].generateText()
+				var textFile = pdfMake.createPdf(docDefinition)
+
+				outputFiles.push({name: themes.array[i].name, content: Promise.promisifyAll(textFile)})
+			}
+
+			var zip = new JSZip()
+			addParagraph("log", "Zipping text files. May take a while...")
+			console.log("Zipping text files. May take a while...")
+			zipText(0, themes.array.length, zip, outputFiles)
+		}
+
 	}
 
 	var files = document.getElementById("files").files
@@ -698,6 +718,21 @@ function zipPdfs(i, max, zip, pdfs) {
 			name = pdfs[i].name.replace(":", "_") // colons aren't allowed in windows file names.
 			zip.file(name+".pdf", buffer)
 			zipPdfs(i + 1, max, zip, pdfs)
+		})
+	} else { // final one
+		zip.generateAsync({type: "blob"}).then(function(blob) {
+			saveAs(blob, "study-bible-help.zip")
+		})
+	}
+}
+
+
+function zipText(i, max, zip, textFiles) {
+	if(i < max) {
+		textFiles[i].content.getBuffer(function(buffer) {
+			name = textFiles[i].name.replace(":", "_") // colons aren't allowed in windows file names.
+			zip.file(name+".txt", buffer)
+			zipText(i + 1, max, zip, textFiles)
 		})
 	} else { // final one
 		zip.generateAsync({type: "blob"}).then(function(blob) {

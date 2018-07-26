@@ -302,6 +302,17 @@ class Theme {
 
 		return docDefinition
 	}
+
+	generateText() {
+		var docDefinition = ""
+
+		for(var i = 0; i < this.quotes.length; i++) {
+			var quoteOutput = this.quotes[i].generateText()
+			docDefinition = docDefinition.concat(quoteOutput)
+		}
+
+		return docDefinition
+	}
 }
 
 class ThemeArray {
@@ -422,6 +433,20 @@ class Quote {
 		}
 
 		return [reference, verse, body]
+	}
+
+	generateText() {
+		var referenceText = this.getReferenceText()
+		if(this.findAuthor !== undefined) {
+			referenceText = referenceText + " (" + this.findAuthor() + ")"
+		}
+
+		var bodyText = this.content + "\n\n"
+
+		var verseText = this.getVerseText()
+		verseText = verseText + "\n\n"
+
+		return referenceText + verseText + bodyText + "_____________" + "\n\n"
 	}
 
 	findAuthor() {
@@ -688,10 +713,9 @@ function handleFileUpload(outputType) {
 
 		else if(outputType === "text") {
 			for(var i = 0; i < themes.array.length; i++) {
-				var docDefinition = themes.array[i].generateText()
-				var textFile = pdfMake.createPdf(docDefinition)
+				var textFileDefinition = themes.array[i].generateText()
 
-				outputFiles.push({name: themes.array[i].name, content: Promise.promisifyAll(textFile)})
+				outputFiles.push({name: themes.array[i].name, content: textFileDefinition})
 			}
 
 			var zip = new JSZip()
@@ -729,11 +753,9 @@ function zipPdfs(i, max, zip, pdfs) {
 
 function zipText(i, max, zip, textFiles) {
 	if(i < max) {
-		textFiles[i].content.getBuffer(function(buffer) {
-			name = textFiles[i].name.replace(":", "_") // colons aren't allowed in windows file names.
-			zip.file(name+".txt", buffer)
-			zipText(i + 1, max, zip, textFiles)
-		})
+		name = textFiles[i].name.replace(":", "_") // colons aren't allowed in windows file names.
+		zip.file(name+".txt", textFiles[i].content)
+		zipText(i + 1, max, zip, textFiles)
 	} else { // final one
 		zip.generateAsync({type: "blob"}).then(function(blob) {
 			saveAs(blob, "study-bible-help.zip")

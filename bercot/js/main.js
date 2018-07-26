@@ -438,7 +438,7 @@ class Quote {
 	generateText() {
 		var referenceText = this.getReferenceText()
 		if(this.findAuthor !== undefined) {
-			referenceText = referenceText + " (" + this.findAuthor() + ")"
+			referenceText = referenceText + " (" + this.findAuthor() + ")" + "\n"
 		}
 
 		var bodyText = this.content + "\n\n"
@@ -446,7 +446,7 @@ class Quote {
 		var verseText = this.getVerseText()
 		verseText = verseText + "\n\n"
 
-		return referenceText + verseText + bodyText + "_____________" + "\n\n"
+		return referenceText + verseText + bodyText + "---------------------------" + "\n\n"
 	}
 
 	findAuthor() {

@@ -23,4 +23,4 @@ Yet this message is intimately connected with the person of Jesus. 1 John 5:1-5 
 
 > You are my friends if you do what I command.
 
-This is a simple principle, but it is often lost when people focus on a "personal relationship", a nice-sounding phrase that often centers around an emotional experience. Although the word "relationship" doesn't appear in scripture, the concept is all over the place. In John 15, Jesus calls his disciples "friends!" But he defines very clearly the conditions of that friendship: "You are my friends if you do what I command." A relationship without obedience is no relationship at all.
+This is a simple principle, but it is often lost when people emphasize a "personal relationship" with Jesus, a nice-sounding phrase that often centers around an emotional experience. To be sure, although the word "relationship" doesn't appear in scripture, the concept is all over the place. In John 15, Jesus calls his disciples "friends!" But he defines very clearly the conditions of that friendship: "You are my friends if you do what I command." A relationship without obedience is no relationship at all.

@@ -6,6 +6,25 @@ class InputFileParser {
 		this.themes = [];
 	}
 
+	// takes the first line of each reference (e.g. "{Jn 3:16}")
+	// and adds it to a line below with curly braces replaced by brackets
+	// so that David can see the references he associated with each quote
+	// after parsing
+	insert_references_as_text(raw_reference) {
+		console.log("starting")
+		console.log(raw_reference)
+		var end_first_line = raw_reference.indexOf("\n")
+		console.log(end_first_line)
+		var first_line = raw_reference.slice(0, end_first_line)
+		console.log(first_line)
+		var first_line_as_text = first_line.replace("{", "[").replace("}", "]") + "\n"
+		console.log(first_line_as_text)
+		var result = raw_reference.slice(0, end_first_line+1) + first_line_as_text + raw_reference.slice(end_first_line+1)
+		console.log(result)
+
+		return result
+	}
+
 	file(fileContents) {
 		var themes = new ThemeArray()
 		// parse into individual entries
@@ -19,7 +38,8 @@ class InputFileParser {
 			sliced.shift()
 		}
 		for(var i = 0; i < sliced.length; i++) {
-			sliced[i] = "{" + sliced[i]
+			sliced[i] = "{" + sliced[i] // add the "{" back in that we lost when we split on "{"
+			sliced[i] = this.insert_references_as_text(sliced[i])
 		}
 		//console.log(sliced)
 

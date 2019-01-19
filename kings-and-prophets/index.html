@@ -1,0 +1,73 @@
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
+<script type="text/javascript">
+  google.charts.load("current", {packages:["timeline"]});
+  google.charts.setOnLoadCallback(drawChart);
+  function drawChart() {
+
+    var container = document.getElementById('kings-and-prophets');
+    var chart = new google.visualization.Timeline(container);
+    var dataTable = new google.visualization.DataTable();
+    dataTable.addColumn({ type: 'string', id: 'Kingdom' });
+    dataTable.addColumn({ type: 'string', id: 'Name' });
+    dataTable.addColumn({ type: 'date', id: 'Start' });
+    dataTable.addColumn({ type: 'date', id: 'End' });
+    dataTable.addRows([
+      [ 'Israel', 'David',           new Date(-1010,0,0),   new Date(-00980,0,0) ], // should be 40 years
+      [ 'Israel', 'Solomon',         new Date(-00980,0,0),  new Date(-00940,0,0) ],
+      [ 'Israel', 'Jeroboam',        new Date(-00940,0,0),  new Date(-00918,0,0) ],
+      [ 'Israel', 'Nadah',           new Date(-00918,0,0),  new Date(-00916,0,0) ],
+      [ 'Israel', 'Baasha',          new Date(-00916,0,0),  new Date(-00892,0,0) ],
+      [ 'Israel', 'Elah',            new Date(-00892,0,0),  new Date(-00890,0,0) ],
+      [ 'Israel', 'Zimri',           new Date(-00890,0,0),  new Date(-00890,0,7) ],
+      [ 'Israel', 'Omri',            new Date(-00890,0,7),  new Date(-00878,0,7) ],
+      [ 'Israel', 'Ahab',            new Date(-00878,0,7),  new Date(-00856,0,7) ],
+      [ 'Israel', 'Ahaziah',         new Date(-00856,0,7),  new Date(-00854,0,7) ],
+      [ 'Israel', 'Joram',           new Date(-00854,0,7),  new Date(-00842,0,7) ],
+      [ 'Israel', 'Jehu',            new Date(-00842,0,7),  new Date(-00814,0,7) ],
+      [ 'Israel', 'Jehoahaz',        new Date(-00814,0,7),  new Date(-00797,0,7) ],
+      [ 'Israel', 'Johoash',         new Date(-00797,0,7),  new Date(-00781,0,7) ],
+      [ 'Israel', 'Jeroboam II',     new Date(-00781,0,7),  new Date(-740,0,7) ],
+      [ 'Israel', 'Zechariah',       new Date(-740,0,7),  new Date(-740,6,7) ],
+      [ 'Israel', 'Shallum',         new Date(-740,6,7),  new Date(-740,7,7) ],
+      [ 'Israel', 'Menahem',         new Date(-740,7,7),  new Date(-730,7,7) ],
+      [ 'Israel', 'Pekahiah',        new Date(-730,7,7),  new Date(-728,7,7) ],
+      [ 'Israel', 'Pekah',           new Date(-728,7,7),  new Date(-708,7,7) ],
+      [ 'Israel', 'Hosheah',         new Date(-708,7,7),  new Date(-699,7,7) ],
+     
+      [ 'Judah',  'David',           new Date(-1010,0,0),   new Date(-00980,0,0) ], // should be 40 years
+      [ 'Judah',  'Solomon',         new Date(-00980,0,0),  new Date(-00940,0,0) ],
+      [ 'Judah',  'Rehoboam',        new Date(-00940,0,0),  new Date(-00923,0,0) ],
+      [ 'Judah',  'Abijah',          new Date(-00923,0,0),  new Date(-00920,0,0) ],
+      [ 'Judah',  'Asa',             new Date(-00920,0,0),  new Date(-00879,0,0) ],
+      [ 'Judah',  'Jehoshapat',      new Date(-00879,0,0),  new Date(-00854,0,0) ],
+      [ 'Judah',  'Jehoram',         new Date(-00854,0,0),  new Date(-00846,0,0) ],
+      [ 'Judah',  'Ahaziah',         new Date(-00846,0,0),  new Date(-00845,0,0) ],
+      [ 'Judah',  'Athaliah',        new Date(-00845,0,0),  new Date(-00838,0,0) ],
+      [ 'Judah',  'Joash',           new Date(-00838,0,0),  new Date(-00798,0,0) ],
+      [ 'Judah',  'Amaziah',         new Date(-00798,0,0),  new Date(-00769,0,0) ],
+      [ 'Judah',  'Azariah',         new Date(-00769,0,0),  new Date(-717,0,0) ],
+      [ 'Judah',  'Jotham',          new Date(-717,0,0),  new Date(-701,0,0) ],
+      [ 'Judah',  'Ahaz',            new Date(-701,0,0),  new Date(-685,0,0) ],
+      [ 'Judah',  'Hezekiah',        new Date(-685,0,0),  new Date(-656,0,0) ],
+      [ 'Judah',  'Manasseh',        new Date(-656,0,0),  new Date(-601,0,0) ],
+      [ 'Judah',  'Amon',            new Date(-601,0,0),  new Date(-599,0,0) ],
+      [ 'Judah',  'Josiah',          new Date(-599,0,0),  new Date(-568,0,0) ],
+      [ 'Judah',  'Jehoahaz',        new Date(-568,0,0),  new Date(-568,3,0) ],
+      [ 'Judah',  'Jehoiakim',       new Date(-568,3,0),  new Date(-557,3,0) ],
+      [ 'Judah',  'Jehoiachin',      new Date(-557,3,0),  new Date(-557,6,0) ],
+      [ 'Judah',  'Zedekiah',        new Date(-557,6,0),  new Date(-546,6,0) ]]);
+
+
+    var options = {
+      height: 400,
+      explorer: {axis: 'horizontal', keepInBounds: true, actions: ['dragToZoom', 'rightClickToReset']}
+      //timeline: { colorByRowLabel: true }
+    };
+
+    chart.draw(dataTable, options);
+  }
+
+</script>
+
+<div id="kings-and-prophets"></div>

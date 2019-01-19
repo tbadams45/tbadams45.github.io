@@ -14,11 +14,16 @@ title: Home
 
     <span class="post-date">{{ post.date | date_to_string }}</span>
 
-    {{ post.content }}
-    {% include newsletter.html %}
+    {{ post.content | truncatewords: 150 }}
+
+    <a href="{{ site.baseurl }}{{ post.url }}">
+      Read more
+    </a>
   </div>
   {% endfor %}
 </div>
+
+{% include newsletter.html %}
 
 <div class="pagination">
   {% if paginator.next_page %}

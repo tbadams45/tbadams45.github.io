@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta author="author" content="Timothy Adams">
+		<title>Spanish Multisearch</title>
+	</head>
+	<body>
+
+		<p>What Spanish word would you like to multisearch? Type below, then press enter please.</p>
+		<input type="text" id="boxu" autofocus>
+
+		<script>
+			document.getElementById("boxu").onkeydown = function(e) {searchy(e)};
+			function searchy(e) 
+			{
+				if (e.which == 13)
+				{
+		 				var q = encodeURIComponent(document.getElementById("boxu").value);
+	 					window.open("http://translate.google.com/translate?hl=en&sl=es&tl=en&u=http%3A%2F%2Fwww.google.es%2Fsearch%3Fq%3D" + q + "%26hl%3Den%26tbo%3Dd%26site%3Dimghp%26tbm%3Disch%26sout%3D1%26biw%3D1366%26bih%3D643");
+	 					window.open("http://www.forvo.com/word/" + q + "/#es");	 
+	 					window.open("http://www.wordreference.com/es/en/translation.asp?spen=" + q);
+	 					//window.open("http://www.linguee.com/english-spanish/search?source=spanish&query=" + q);
+	 					window.open("http://translate.google.com/translate?hl=en&sl=es&tl=en&u=http%3A%2F%2Fes.thefreedictionary.com%2F" + q);
+	 					window.open("https://www.biblegateway.com/quicksearch/?quicksearch=%22" + q + "%22&qs_version=NVI")
+
+	 					document.getElementById("boxu").value = "";		
+				}
+			}
+		</script>
+	</body>
+</html>

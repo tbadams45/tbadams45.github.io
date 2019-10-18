@@ -4,9 +4,6 @@ title: The Weekly Review
 description: An introduction to the weekly review from David Allen's Getting Things Done methodology, specifically applied to undergraduate life. 
 ---
 
-*I started writing this post approximately three years ago and never finished it.*
-
-
 For many, college is a time of increased freedom and choices about how they will spend their time. When you enter college as a freshman, it seems that very few hours in the day are preallocated to school, sports, or other extracurriculars. For much less time in the day than in high school, no one is forcing you to be anywhere, at any time. Even class is optional!
 
 This is exciting -- there's so much to experience on a college campus, and now you have the freedom to explore! But this newfound freedom can often be misinterpreted, because, for many, college is the time when a fundamental shift takes place. Up through senior year of high school, most responsibilities that an individual might have were structured for them. Meeting responsibilities in large part meant showing up and meeting deadlines that were designed to be completed in 1-5 days. 

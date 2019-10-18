@@ -1,5 +1,5 @@
 ---
-title: Where did Moses write about Jesus (Part 2)
+title: Where did Moses write about Jesus? (Part 2)
 layout: post
 ---
 

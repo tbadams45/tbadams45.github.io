@@ -15,7 +15,7 @@ Of course, there's a pretty good reason for this. Here's the first verse in each
 
 > He meant Judas, the son of Simon Iscariot, who, though one of the Twelve, was later to betray him. *John 6:71*
 
-Not a great tag line, huh? Without a doubt, this is what Judas is known for. Yet I think it's easy to see Judas a caricature. "Oh, there's Judas again. Look at him, the traitor. Stinks to be him!" Yet Judas was a person just like you and me, with desires, dreams, struggles, relationships, etc. A bit of this comes out when we see him filled with remorse in Matthew 27 when he throws the money back at the chief priests and elders. He was a real guy who lived with Jesus for 3 years, and I'm pretty confident that he didn't start following Jesus with the intent to betray him.
+Not a great tag line, huh? Without a doubt, this is what Judas is known for. Yet I think it's easy to see Judas as a caricature. "Oh, there's Judas again. Look at him, the traitor. Stinks to be him!" Yet Judas was a person just like you and me, with desires, dreams, struggles, relationships, etc. A bit of this comes out when we see him filled with remorse in Matthew 27 when he throws the money back at the chief priests and elders. He was a real guy who lived with Jesus for 3 years, and I'm pretty confident that he didn't start following Jesus with the intent to betray him.
 
 ![Desmond the Moon Bear](/files/desmond-how-did-i-get-here.gif)
 

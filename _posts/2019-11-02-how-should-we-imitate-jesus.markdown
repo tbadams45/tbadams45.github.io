@@ -3,8 +3,6 @@ title: How should we imitate Jesus? (Part 1)
 layout: post
 ---
 
-*This post continues the Q&A series I introduced in [a previous post]({% post_url 2019-09-10-what-bible-questions-do-you-want-to-know-how-to-answer %}). As this is Part 1, I only introduce the question here. I'll do my best to answer it in a second post.*
-
 Sometime around my early teen years, there were all of these bracelets that said: "What would Jesus do?" The idea, of course, was that when you were making a decision, you would first think about how Jesus would approach the situation. You would try to imitate Jesus since he is the perfect example of how to live a godly life.   
 
 ![What would Jesus do?](/files/wwjd.jpg)
@@ -18,3 +16,5 @@ What do the scriptures say? Did Jesus himself ever talk about if/how we should i
 ## Postscript: a cool new thing I learned
 
 Apparently, you can use wild cards and boolean expressions on [Blue Letter Bible](blueletterbible.org) searches. So, hypothetically, you could use the expression **imitat* OR example** to [search](https://www.blueletterbible.org/search/search.cfm?Criteria=imitat%2A+OR+example&t=NIV#s=s_primary_0_1) for every place in the Bible where the word "imitate", "imitator", "imitator", or "example" appears. I think that's cool.
+
+*This post continues the Q&A series I introduced in [a previous post]({% post_url 2019-09-10-what-bible-questions-do-you-want-to-know-how-to-answer %}). As this is Part 1, I only introduce the question here. I'll do my best to answer it in a second post.*

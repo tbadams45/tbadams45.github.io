@@ -15,6 +15,6 @@ What do the scriptures say? Did Jesus himself ever talk about if/how we should i
 
 ## Postscript: a cool new thing I learned
 
-Apparently, you can use wild cards and boolean expressions on [Blue Letter Bible](blueletterbible.org) searches. So, hypothetically, you could use the expression **imitat* OR example** to [search](https://www.blueletterbible.org/search/search.cfm?Criteria=imitat%2A+OR+example&t=NIV#s=s_primary_0_1) for every place in the Bible where the word "imitate", "imitator", "imitator", or "example" appears. I think that's cool.
+Apparently, you can use wild cards and boolean expressions on [Blue Letter Bible](blueletterbible.org) searches. So, hypothetically, you could use the expression **imitat* OR example** to [search](https://www.blueletterbible.org/search/search.cfm?Criteria=imitat%2A+OR+example&t=NIV#s=s_primary_0_1) for every place in the Bible where the word "imitate", "imitator", "imitators", or "example" appears. I think that's cool.
 
 *This post continues the Q&A series I introduced in [a previous post]({% post_url 2019-09-10-what-bible-questions-do-you-want-to-know-how-to-answer %}). As this is Part 1, I only introduce the question here. I'll do my best to answer it in a second post.*

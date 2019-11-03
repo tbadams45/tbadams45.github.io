@@ -20,3 +20,5 @@ These scriptures both get to the fact that the Jews were waiting for someone who
 I was about to write "stay tuned," but that provokes an image of you sitting on your couch and waiting for the commercial to end so you can hear the answer. Perhaps more appropriate is "on your mark... get set... go!" 
 
 (If you'd like a hint, check out Acts 3:17-23 and Acts 7:37.)
+
+**Edit:** You can read Part 2 [here]({% post_url 2019-10-12-where-did-moses-write-about-jesus-part-2 %})

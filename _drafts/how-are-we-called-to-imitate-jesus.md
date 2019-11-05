@@ -3,8 +3,6 @@ layout: post
 title: How are we called to imitate Jesus and God the Father?
 ---
 
-https://www.biblegateway.com/quicksearch/?qs_version=NIV&quicksearch=follow+me&begin=48&end=48
-
 While reading *Decision Making and the Will of God* (Garry Friesman with J. Robin Maxson, Multnomah Publishers 1980), I came across an interesting footnote. Friesman is responding to the argument that because God seemed to have a "detailed life plan" for Jesus (God's "individual will" for Jesus), that God also has an individual will for each of us. He notes: 
 
 > "The example of Christ is often used to support the idea of following an individual will of God. Traditional writers refer to the life of Christ, but they never give a detailed explanation of those areas where Christ's example is normative." (pg. 94)
@@ -72,17 +70,14 @@ These examples don't preclude us imitating Jesus in other ways, of course. They 
 Other scriptures that I thought of: 
 - 1 Peter 4:1-2
 - 1 John 3:16-20
-- 1 John 4:11
+- 1 John 4:10-11
+- 1 Thess 1:6
 
 On following:
 - Luke 9:23
-- 1 John 2:3-6
+- **1 John 2:3-6**
 - John 12:23-28
-- Mark 10:35-45
-
-Living for Jesus
-- 2 Corinthians 5:14-15
-- Colossians 3
+- Mark 10:35-45 (imitating his standard of leadership)
 
 Following Paul's example:
 - 1 Corinthians 11:1
@@ -91,3 +86,8 @@ Ways we're going to be like Jesus
 - Persecuted (Mt 10)
 
 "Enough for a student to be like his teacher"
+
+Imitating other people:
+- James 5:10
+- Hebrews 6:12
+- Hebrew 13:7

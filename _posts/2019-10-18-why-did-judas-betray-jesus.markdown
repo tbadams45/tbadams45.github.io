@@ -25,4 +25,4 @@ Good luck, folks. I'll post my thoughts next week.
 
 *If you find the end of this post profoundly unsatisfying, you probably should take a look at [this post]({% post_url 2019-09-10-what-bible-questions-do-you-want-to-know-how-to-answer %}) for context.*
 
-**Edit**: you can read part 2 [here]({% post_url 2019-10-28-why-did-judas-betray-jesus-part-2 %})
+**Edit**: you can read part 2 [here]({% post_url 2019-10-28-why-did-judas-betray-jesus-part-2 %}).

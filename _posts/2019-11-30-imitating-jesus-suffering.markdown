@@ -56,7 +56,7 @@ We don't have the time to examine these passages in detail. But when you read th
 
 ## A very old idea
 
-Responding to suffering and persecution the way Jesus did is a radical idea. But it is not a new one. For over 300 years, the church embraced these commands wholeheartedly. Their speak in one voice a message that is too often missed today:
+Responding to suffering and persecution the way Jesus did is a radical idea. But it is not a new one. For over 300 years, the church embraced these commands wholeheartedly. They speak with one voice a message that is too often missed today:
 
 > Clement of Alexandria (195 AD): "Christians are not allowed to use violence to correct the delinquencies of sins." 
 >

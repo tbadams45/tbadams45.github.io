@@ -3,10 +3,10 @@
 permalink:           pretty
 
 # Setup
-title:               Timothy Breckner Adams
+title:               The Kingdom Breaks In
 tagline:             ''
-description:         A place to host my thoughts, musings, ramblings, etc.
-url:                 http://tbadams.com
+description:         Exploring the paradigm-breaking good news of Jesus.
+url:                 http://kingdom-breaks-in.com
 baseurl:             ''
 paginate:            5
 plugins:             [jekyll-paginate, jekyll-seo-tag]
@@ -14,8 +14,8 @@ plugins:             [jekyll-paginate, jekyll-seo-tag]
 # About/contact
 author:
   name:              Timothy Adams
-  url:               http://tbadams.com
-  email:             tbadams45@gmail.com
+  url:               http://kingdom-breaks-in.com
+  email:             tim@tbadams.com
 
 # Google services
 google_analytics: UA-81234002-1

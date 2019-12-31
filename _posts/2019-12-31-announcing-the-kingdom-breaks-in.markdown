@@ -1,5 +1,5 @@
 ---
-title: Announcing: The Kingdom Breaks In
+title: Announcing "The Kingdom Breaks In"
 layout: post
 ---
 

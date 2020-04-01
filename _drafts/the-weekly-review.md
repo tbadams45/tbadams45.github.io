@@ -49,8 +49,6 @@ If the item needs to be done and takes more than ~5 minutes, consider the follow
 
 ## An example
 
-[past article here, on some time management tips I've found useful during my summer internship. Not all are completely relevant to a college student, but many are.]({% post_url 2016-07-27-effective-time-management %})
-
 # My weekly review
 
 - Brain dump. What are all the things that I'm thinking about? Put them in my inbox.

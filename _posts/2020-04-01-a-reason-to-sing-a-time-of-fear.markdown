@@ -32,6 +32,5 @@ I hope that as you read this, you too can feel the excitement of what it means t
 > Let us not become weary in doing good, for at the proper time we will reap a harvest if we do not give up. Therefore, as we have opportunity, let us do good to all people, especially to those who belong to the family of believers. *Galatians 6:9-10*
 
 -----------------
------------------
 
 *Footnote: if you've read* 7 Habits of Highly Effective People *by Stephen Covey, you'll recognize the figures I've included. The first figure is essentially the same, but I've made one key change to the second compared to what is presented in Covey's book: I've added God's promises as the source of our decisions. In the* 7 Habits, *the decisions of proactive people flow out of their mission statement, core values, and fundamental identity. For the Christian, this fundamental identity stems from our status as a member of God's kingdom and family--wholly loved and living in the transformative hope of the resurrection.*

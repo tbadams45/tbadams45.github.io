@@ -26,3 +26,5 @@ Finally, I want you to be **inspired**. The life that Jesus calls us to is hard,
 I'm excited to be on this journey with you. While I don't have a comments section on this blog, I do want to hear from you. Let me know your thoughts or questions at tim@tbadams.com.
 
 See you around!
+
+{% include newsletter.html %}

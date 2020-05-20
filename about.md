@@ -17,7 +17,7 @@ I'm writing this blog because this message is burning within me: being a member 
 
 When you read this blog, I want you to **learn**, be **equipped**, and be **inspired**. 
 
-First, I want you to **learn** about what the kingdom of God is and what it means to be a member of it. Sometimes we'll look at a specific topic, like how we're called to respond to suffering and persecution, and others a particular mindset, like what our attitude to sin should be. Either way, we'll dive into scripture and see what it says--connecting themes across chapters and books and trying to understand what these radical words have to do with our actual lives. 
+First, I want you to **learn** about what the kingdom of God is and what it means to be a member of it. Sometimes we'll look at a specific topic, like how we're called to respond to suffering and persecution, and others a particular mindset, like what our attitude to sin should be. No matter what, we'll dive into scripture and see what it says--connecting themes across chapters and books and trying to understand what these radical words have to do with our actual lives. 
 
 Second, I want you to be **equipped** to handle the word of God correctly and not let any old Joe Preacher lead you astray. Jesus and the apostles warned us that there'd be people who would seem good but who wouldn't preach the truth. It's not a scare tactic: it's a reality. The only way you're going to be able to tell the truth from the lies is if you know the Bible for yourself. Beyond just providing information, I'm going to try to share principles, tools, and techniques that have helped me on my own journey. 
 

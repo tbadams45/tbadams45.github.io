@@ -1,5 +1,5 @@
 ---
-title: Proclaiming a new humanity: why Christians live differently
+title: Proclaiming a new humanity
 layout: post
 ---
 

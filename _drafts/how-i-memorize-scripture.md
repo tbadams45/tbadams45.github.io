@@ -13,7 +13,14 @@ The solution to this is to employ a method that helps you practice recall from t
 
 ## The method
 
-In just a few steps, 
+In just a few steps, the method is:
+
+1. *Write* the first letter of every word, with punctuation. When you're done, you'll get something that looks like this: 
+
+![Example of the one-letter strategy](/files/memorization_example.jpeg)
+
+
+2. testing
 
 1. Write the first letter of every word on a page, with punctuation.
 2. While reading your first letter page, listen to the section trying to memorize a dozen or so times, until you can easily recite the passage using just the first letters.
@@ -23,4 +30,3 @@ In just a few steps,
 6. Start trying to recite the passage from memory, without any prompts. It will be hard. That's ok. The method is to do as much as you can, and then once you get stuck to quickly review your first letters to see where you went wrong. This is the most important part though, because practicing recall is a very different thing than just reading, so you really want to try to not use your notes.
 7. Once you've memorized it fully, use a tool like Anki to make spaced-based repetition flash cards so you never forget (optional step but very powerful)
 
-![Example of the one-letter strategy](/files/memorization_example.jpeg)

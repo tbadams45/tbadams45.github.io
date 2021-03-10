@@ -1,5 +1,5 @@
 ---
-title: 'Small update: video on memorization '
+title: 'Short update: video on memorization '
 layout: post
 
 ---

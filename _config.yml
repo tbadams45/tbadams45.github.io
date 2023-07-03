@@ -6,7 +6,7 @@ permalink:           pretty
 title:               The Kingdom Breaks In
 tagline:             ''
 description:         Exploring the paradigm-breaking good news of Jesus.
-url:                 http://kingdom-breaks-in.com
+url:                 https://timadams.xyz
 baseurl:             ''
 paginate:            5
 plugins:             [jekyll-paginate, jekyll-seo-tag]
@@ -14,7 +14,7 @@ plugins:             [jekyll-paginate, jekyll-seo-tag]
 # About/contact
 author:
   name:              Timothy Adams
-  url:               http://kingdom-breaks-in.com
+  url:               https://timadams.xyz
   email:             tim@tbadams.com
 
 # Google services
